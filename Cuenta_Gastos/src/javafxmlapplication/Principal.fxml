@@ -5,10 +5,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.PrincipalController">
    <children>
-      <HBox prefHeight="400.0" prefWidth="448.0" />
+      <HBox prefHeight="400.0" prefWidth="448.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+         </children></HBox>
       <HBox prefHeight="400.0" prefWidth="454.0">
          <children>
             <VBox prefHeight="400.0" prefWidth="308.0">
