@@ -10,7 +10,7 @@ import javafx.fxml.Initializable;
 
 /**
  * FXML Controller class
- *
+ * Clase controller para inicioSesion.fxml
  * @author jiaji
  */
 public class PrincipalController implements Initializable {
