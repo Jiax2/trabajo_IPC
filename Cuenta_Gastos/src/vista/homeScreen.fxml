@@ -35,9 +35,9 @@
       </Pane>
    </left>
    <center>
-      <VBox prefHeight="366.0" prefWidth="516.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="pantallaCambio" prefHeight="350.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="111.0" prefWidth="516.0">
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gasto mensual">
                      <font>
@@ -46,7 +46,7 @@
                   </Text>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="126.0" prefWidth="516.0">
+            <VBox alignment="TOP_CENTER" prefHeight="163.0" prefWidth="516.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enero 2024" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="300,00€" wrappingWidth="138.046875">
@@ -59,7 +59,7 @@
                   </Text>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="176.0" prefWidth="516.0">
+            <VBox alignment="TOP_CENTER" prefHeight="130.0" prefWidth="516.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Compara" wrappingWidth="48.234375" />
                   <VBox prefHeight="200.0" prefWidth="100.0">

@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafxmlapplication.JavaFXMLApplication;
 
 /**
@@ -20,6 +21,8 @@ public class GastosController implements Initializable {
     @FXML
     private Button gastosAnual;
     private JavaFXMLApplication main; 
+    @FXML
+    private VBox pantallaCambio;
 
     /**
      * Initializes the controller class.
