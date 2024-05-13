@@ -22,7 +22,7 @@ public class JavaFXMLApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage; 
-        loadScene("homeScreen.fxml"); 
+        loadScene("Registro.fxml"); 
         stage.show(); 
     }
     
@@ -33,6 +33,9 @@ public class JavaFXMLApplication extends Application {
         Parent root = loader.load(); 
         Scene scene = new Scene(root); 
         stage.setScene(scene);
+        stage.setTitle("MalGastos");
+        stage.setResizable(false);
+        stage.show();
     }
     
     public void cambiarInicio(){
