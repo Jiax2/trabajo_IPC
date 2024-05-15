@@ -24,7 +24,7 @@
                      </image>
                   </ImageView>
                   <Label text="Label" />
-                  <Button layoutX="13.0" layoutY="138.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="101.0" text="Mensuales" />
+                  <Button layoutX="13.0" layoutY="138.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="101.0" stylesheets="@../css/homeScreen.css" text="Mensuales" />
                   <Button fx:id="gastosAnual" mnemonicParsing="false" onAction="#changeAnual" prefHeight="58.0" prefWidth="101.0" text="Anuales" />
                   <Button layoutX="13.0" layoutY="138.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="101.0" text="Categorias" />
                   <Button layoutX="13.0" layoutY="196.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="101.0" text="Añadir" />
