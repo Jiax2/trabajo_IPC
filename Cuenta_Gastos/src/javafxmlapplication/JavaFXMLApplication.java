@@ -21,30 +21,15 @@ public class JavaFXMLApplication extends Application {
     private Stage stage; 
     @Override
     public void start(Stage stage) throws Exception {
-        this.stage = stage; 
-        loadScene("Registro.fxml"); 
-        stage.show(); 
-    }
-    
-    //==========================================================================
-    //carga una nueva escena
-    public void loadScene(String s) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/"+ s)); 
-        Parent root = loader.load(); 
-        Scene scene = new Scene(root); 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/homeScreen.fxml")); 
+        Parent root = loader.load();  
+        Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("MalGastos");
-        stage.setResizable(false);
         stage.show();
     }
     
     public void cambiarInicio(){
-        try { 
-            loadScene("Registro.fxml");
-        } catch (IOException ex) {
-            Logger.getLogger(JavaFXMLApplication.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Error loading scene: " + "incioSesion");
-        }
+       
     }
     /**
      * @param args the command line arguments
