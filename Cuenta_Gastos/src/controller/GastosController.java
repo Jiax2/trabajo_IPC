@@ -18,11 +18,13 @@ import javafxmlapplication.JavaFXMLApplication;
  */
 public class GastosController implements Initializable {
 
-    @FXML
-    private Button gastosAnual;
     private JavaFXMLApplication main; 
     @FXML
     private VBox pantallaCambio;
+    @FXML
+    private VBox pantallaCambio1;
+    @FXML
+    private VBox pantallaCambio11;
 
     /**
      * Initializes the controller class.
@@ -38,7 +40,6 @@ public class GastosController implements Initializable {
         this.main = mainApplication;
     }
 
-    @FXML
     private void changeAnual(ActionEvent event) throws IOException {
         if (main != null) {
             main.cambiarInicio();
