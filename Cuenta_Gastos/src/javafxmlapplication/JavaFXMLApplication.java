@@ -22,7 +22,7 @@ public class JavaFXMLApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage; 
-        loadScene("inicioSesion.fxml"); 
+        loadScene("Registro.fxml"); 
         stage.show(); 
     }
     

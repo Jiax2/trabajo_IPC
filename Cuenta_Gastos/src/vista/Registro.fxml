@@ -2,40 +2,22 @@
 
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.RegistroController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="282.0">
          <children>
-            <ImageView fitHeight="303.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="304.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/Logo.png" />
+                  <Image url="@../../../../../../Desktop/PracIPC/WhatsApp%20Image%202024-05-09%20at%2011.00.42.jpeg" />
                </image>
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MalGastosª">
-               <font>
-                  <Font name="System Bold Italic" size="22.0" />
-               </font></Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MalGastosª" />
          </children>
       </VBox>
-      <GridPane>
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
    </children>
 </HBox>
