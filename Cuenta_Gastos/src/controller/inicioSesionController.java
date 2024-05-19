@@ -4,7 +4,7 @@
  */
 package controller;
 
-import java.awt.event.MouseEvent;
+import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -29,7 +30,8 @@ import model.AcountDAOException;
  * @author jiaji
  */
 public class inicioSesionController implements Initializable {
-
+    @FXML
+    private Stage primaryStage;
     @FXML
     private HBox hBox;
     @FXML
@@ -38,8 +40,6 @@ public class inicioSesionController implements Initializable {
     private PasswordField Password;
     @FXML
     private Text errCon;
-    @FXML
-    private Text Registro;
     @FXML
     private Button iniciar;
 
@@ -55,27 +55,37 @@ public class inicioSesionController implements Initializable {
     private void pulsadoIniciar(ActionEvent event) throws IOException, AcountDAOException {
         if (User.getText().isEmpty() || Password.getText().isEmpty()) {
             errCon.setText("Faltan campos por completar");
-        } else if (!Acount.getInstance().logInUserByCredentials(User.getText(), Password.getText())) {
+        } else if (Acount.getInstance().logInUserByCredentials(User.getText(), Password.getText())==false){
             errCon.setText("No existe el usuario");
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/homeScreen.fxml"));
-            Parent root = loader.load();
-            iniciar.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Stage) iniciar.getScene().getWindow()).close();
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("homeScreenfxml"));
+        HBox root = (HBox) myLoader.load();
+        homeScreenController win1Controller = myLoader.<homeScreenController>getController();
+
+        win1Controller.initWin1(primaryStage);
+        //We create the scene foe win1
+
+        Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("MalGastos");
+        primaryStage.show();
         }
     }
-
-    @FXML
+    /*@FXML
     private void irRegistro(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/Registro.fxml"));
-        Parent root = loader.load();
-        Registro.getScene().getWindow().hide();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-        ((Stage) Registro.getScene().getWindow()).close();
-    }
+    FXMLLoader myLoader = new FXMLLoader(getClass().getResource("Registro.fxml"));
+    HBox root = (HBox) myLoader.load();
+    RegistroController win2Controller = myLoader.<RegistroController>getController();
+    
+    win2Controller.initWin2(primaryStage);
+    //We create the scene foe win1
+    
+    Scene scene = new Scene(root);
+    //we asign new scene to current stage/window
+    primaryStage.setScene(scene);
+    primaryStage.setTitle("Crear Cuenta");
+    primaryStage.show();
+    }*/
+    
 }

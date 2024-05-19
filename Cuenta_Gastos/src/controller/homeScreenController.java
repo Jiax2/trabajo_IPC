@@ -11,9 +11,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
 
 /**
@@ -34,15 +36,26 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
     private Button salir;
     @FXML
     private VBox cambio;
-
+@FXML
+    private Stage primaryStage;
+    @FXML
+    private Scene primaryScene;
+    @FXML
+    private String primaryTitle;
     /**
      * Initializes the controller class.
-     * @param url
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    @FXML
+    public void initWin1(Stage stage){
+        primaryStage = stage;
+        primaryScene = primaryStage.getScene();
+        primaryTitle = primaryStage.getTitle();
+    }
 
     // Method to set the reference to the main application
     public void setMainApplication(JavaFXMLApplication mainApplication) {
