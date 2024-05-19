@@ -7,7 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : jiaji
 */
 #hBox{
-    background-color: #121212;
+    -fx-background-color: #F0F8FF;
 }
 
 #Registro{

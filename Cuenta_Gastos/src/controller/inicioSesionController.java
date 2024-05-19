@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafxmlapplication.JavaFXMLApplication;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -30,10 +31,6 @@ import model.AcountDAOException;
  * @author jiaji
  */
 public class inicioSesionController implements Initializable {
-    @FXML
-    private Stage primaryStage;
-    @FXML
-    private HBox hBox;
     @FXML
     private TextField User;
     @FXML
@@ -50,7 +47,7 @@ public class inicioSesionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Initialization logic if needed
     }
-
+    
     @FXML
     private void pulsadoIniciar(ActionEvent event) throws IOException, AcountDAOException {
         if (User.getText().isEmpty() || Password.getText().isEmpty()) {
@@ -58,35 +55,17 @@ public class inicioSesionController implements Initializable {
         } else if (Acount.getInstance().logInUserByCredentials(User.getText(), Password.getText())==false){
             errCon.setText("No existe el usuario");
         } else {
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/vista/homeScreen.fxml"));
-        HBox root = (HBox) myLoader.load();
-        homeScreenController win1Controller = myLoader.<homeScreenController>getController();
-
-        win1Controller.initWin1(primaryStage);
-        //We create the scene foe win1
-
-        Scene scene = new Scene(root);
-        //we asign new scene to current stage/window
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("MalGastos");
-        primaryStage.show();
+            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/vista/homeScreen.fxml"));
+            Parent root = myLoader.load();
+            JavaFXMLApplication.setRoot(root);
         }
     }
     
     @FXML
     private void irRegistro(MouseEvent event) throws IOException {
-    FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/vista/Registro.fxml"));
-        HBox root = (HBox) myLoader.load();
-        RegistroController win2Controller = myLoader.<RegistroController>getController();
-    
-        win2Controller.initWin2(primaryStage);
-        //We create the scene foe win1
-    
-        Scene scene = new Scene(root);
-        //we asign new scene to current stage/window
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Crear Cuenta");
-        primaryStage.show();
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/vista/Registro.fxml"));
+        Parent root = myLoader.load();
+        JavaFXMLApplication.setRoot(root);
     }
     
 }

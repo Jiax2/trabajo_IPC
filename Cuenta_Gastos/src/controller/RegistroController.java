@@ -11,6 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -19,11 +23,21 @@ import java.io.IOException;
  */
 public class RegistroController implements Initializable {
     @FXML
-    private Stage primaryStage;
+    private Button registrarse;
     @FXML
-    private Scene primaryScene;
+    private TextField nombre;
     @FXML
-    private String primaryTitle;
+    private TextField usuario;
+    @FXML
+    private PasswordField pass1;
+    @FXML
+    private PasswordField pass2;
+    @FXML
+    private TextField mail;
+    @FXML
+    private Text error;
+    @FXML
+    private Button imagen;
     /**
      * Initializes the controller class.
      */
@@ -31,11 +45,4 @@ public class RegistroController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
-    @FXML
-    public void initWin2(Stage stage){
-        primaryStage = stage;
-        primaryScene = primaryStage.getScene();
-        primaryTitle = primaryStage.getTitle();
-    }
 }

@@ -18,20 +18,21 @@ import javafx.stage.Stage;
 
 
 public class JavaFXMLApplication extends Application {
-    private Stage stage; 
+    private static Scene scene; 
+    
+    public static void setRoot(Parent root){
+       scene.setRoot(root);
+    }
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/inicioSesion.fxml")); 
         Parent root = loader.load();  
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Iniciar sesión");
     }
     
-    public void cambiarInicio(){
-       
-    }
     /**
      * @param args the command line arguments
      */
