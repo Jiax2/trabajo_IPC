@@ -58,7 +58,7 @@ public class inicioSesionController implements Initializable {
         } else if (Acount.getInstance().logInUserByCredentials(User.getText(), Password.getText())==false){
             errCon.setText("No existe el usuario");
         } else {
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("homeScreen.fxml"));
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/vista/homeScreen.fxml"));
         HBox root = (HBox) myLoader.load();
         homeScreenController win1Controller = myLoader.<homeScreenController>getController();
 
@@ -72,20 +72,21 @@ public class inicioSesionController implements Initializable {
         primaryStage.show();
         }
     }
-    /*@FXML
+    
+    @FXML
     private void irRegistro(MouseEvent event) throws IOException {
-    FXMLLoader myLoader = new FXMLLoader(getClass().getResource("Registro.fxml"));
-    HBox root = (HBox) myLoader.load();
-    RegistroController win2Controller = myLoader.<RegistroController>getController();
+    FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/vista/Registro.fxml"));
+        HBox root = (HBox) myLoader.load();
+        RegistroController win2Controller = myLoader.<RegistroController>getController();
     
-    win2Controller.initWin2(primaryStage);
-    //We create the scene foe win1
+        win2Controller.initWin2(primaryStage);
+        //We create the scene foe win1
     
-    Scene scene = new Scene(root);
-    //we asign new scene to current stage/window
-    primaryStage.setScene(scene);
-    primaryStage.setTitle("Crear Cuenta");
-    primaryStage.show();
-    }*/
+        Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Crear Cuenta");
+        primaryStage.show();
+    }
     
 }

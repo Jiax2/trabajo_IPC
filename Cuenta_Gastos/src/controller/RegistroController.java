@@ -31,6 +31,7 @@ public class RegistroController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
     @FXML
     public void initWin2(Stage stage){
         primaryStage = stage;

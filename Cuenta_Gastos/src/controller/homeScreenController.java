@@ -36,7 +36,7 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
     private Button salir;
     @FXML
     private VBox cambio;
-@FXML
+    @FXML
     private Stage primaryStage;
     @FXML
     private Scene primaryScene;
