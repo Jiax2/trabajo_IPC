@@ -32,7 +32,9 @@ public class JavaFXMLApplication extends Application {
         stage.show();
         stage.setTitle("Iniciar sesión");
     }
-    
+    public void cambiarInicio(){
+       
+    }
     /**
      * @param args the command line arguments
      */
