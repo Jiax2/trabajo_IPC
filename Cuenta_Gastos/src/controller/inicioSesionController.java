@@ -11,13 +11,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication; 
-
+import model.Acount.*;
 /**
  * FXML Controller class
  *
@@ -45,13 +47,27 @@ public class inicioSesionController implements Initializable {
     private void pulsadoIniciar(ActionEvent event) throws IOException {
         if(User.getText()== null || Password.getText()==null){
             errCon.setText("Faltan campos por completar");
-        }else if(){
-        
+        }else if(logInUserByCredentials(User.getText(),Password.getText())==false){
+            errCon.setText("No existe el usuario");
         }else{
             FXMLLoader loader =new FXMLLoader(getClass().getResource("homeScreen.fxml"));
             Parent root=loader.load();
-            
+            iniciar.getScene().getWindow().hide();
+            Scene scene= new Scene(root);
+            Stage stage=new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
         }
+    }
+    
+    private void irRegistro(MouseEvent event) throws IOException{
+        FXMLLoader loader =new FXMLLoader(getClass().getResource("Registro.fxml"));
+        Parent root=loader.load();
+        Registro.getScene().getWindow().hide();
+        Scene scene= new Scene(root);
+        Stage stage=new Stage();
+        stage.setScene(scene);
+        stage.showAndWait();
     }
     
     @Override
