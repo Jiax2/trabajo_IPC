@@ -58,7 +58,7 @@ public class inicioSesionController implements Initializable {
         } else if (Acount.getInstance().logInUserByCredentials(User.getText(), Password.getText())==false){
             errCon.setText("No existe el usuario");
         } else {
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("homeScreenfxml"));
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("homeScreen.fxml"));
         HBox root = (HBox) myLoader.load();
         homeScreenController win1Controller = myLoader.<homeScreenController>getController();
 
