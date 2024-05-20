@@ -25,7 +25,7 @@ public class JavaFXMLApplication extends Application {
     }
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/inicioSesion.fxml")); 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/homeScreen.fxml")); 
         Parent root = loader.load();  
         scene = new Scene(root);
         stage.setScene(scene);
