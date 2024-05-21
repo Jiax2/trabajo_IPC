@@ -2,21 +2,27 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.scene.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
+import model.*; 
 
 /**
  * FXML Controller class
@@ -37,11 +43,35 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private VBox cambio;
     @FXML
-    private Stage primaryStage;
+    private TableColumn<Charge, Double> colCantidad;
     @FXML
-    private Scene primaryScene;
+    private TableColumn<Charge, LocalDate> colFecha;
     @FXML
-    private String primaryTitle;
+    private TableColumn<Charge, String> colNombre;
+    @FXML
+    private TableColumn<Charge, Category> colCategoria;
+    @FXML
+    private Button addGasto;
+    @FXML
+    private Button deleteGasto;
+    @FXML
+    private VBox pantallaMensual;
+    @FXML
+    private VBox pantallaAnual;
+    @FXML
+    private VBox pantallaTotal;
+    
+    private ObservableList<Charge> listaGastos = null; 
+    //===============================================================
+    //Botones de añadir y eliminar gastos
+    
+    //=============================================================
+    //Muestreo de los gastos en la lista
+    
+    
+    
+   
+    //=============================================================
     /**
      * Initializes the controller class.
      */
@@ -50,17 +80,14 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
         // TODO
     }    
     
-    @FXML
-    public void initWin1(Stage stage){
-        primaryStage = stage;
-        primaryScene = primaryStage.getScene();
-        primaryTitle = primaryStage.getTitle();
-    }
 
     // Method to set the reference to the main application
     public void setMainApplication(JavaFXMLApplication mainApplication) {
         this.main = mainApplication;
     }
+    
+    //=======================================================================
+    //Cambios de pantalla al pulsar los botones 
 
     private void changeAnual(ActionEvent event) throws IOException {
         if (main != null) {
@@ -90,7 +117,7 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
         cambio.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/cuenta.fxml")); 
         Parent root = loader.load();
-        cambio.getChildren().add(root); 
+        cambio.getChildren().add(root);
     }
 
     @FXML
@@ -99,4 +126,9 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
         Parent root = loader.load(); 
         setRoot(root);
     }
+    //===============================================================================================
+    
+    
+    
+    
 }

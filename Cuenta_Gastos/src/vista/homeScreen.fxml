@@ -55,7 +55,7 @@
                <tabs>
                   <Tab text="Mensual">
                      <content>
-                        <VBox fx:id="pantallaCambio" prefHeight="373.0" prefWidth="516.0">
+                        <VBox fx:id="pantallaMensual" prefHeight="373.0" prefWidth="516.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="75.0" prefWidth="516.0">
                                  <children>
@@ -88,6 +88,7 @@
                                  <children>
                                     <TableView prefHeight="248.0" prefWidth="516.0">
                                       <columns>
+                                          <TableColumn prefWidth="168.0" text="Nombre" />
                                         <TableColumn prefWidth="168.0" text="Cantidad" />
                                         <TableColumn prefWidth="158.4000244140625" text="Categoria" />
                                           <TableColumn prefWidth="188.0" text="Fecha" />
@@ -104,7 +105,7 @@
                   </Tab>
                   <Tab text="Anual">
                      <content>
-                        <VBox fx:id="pantallaCambio1" prefHeight="350.0" prefWidth="500.0">
+                        <VBox fx:id="pantallaAnual" prefHeight="350.0" prefWidth="500.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="53.0" prefWidth="516.0">
                                  <children>
@@ -134,7 +135,7 @@
                   </Tab>
                   <Tab text="Total">
                      <content>
-                        <VBox fx:id="pantallaCambio11" prefHeight="350.0" prefWidth="500.0">
+                        <VBox fx:id="pantallaTotal" prefHeight="350.0" prefWidth="500.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="94.0" prefWidth="516.0">
                                  <children>
@@ -149,8 +150,8 @@
                                     </VBox>
                                     <ToolBar prefHeight="54.0" prefWidth="516.0">
                                       <items>
-                                        <Button mnemonicParsing="false" text="Añade gasto" />
-                                          <Button layoutX="10.0" layoutY="11.0" mnemonicParsing="false" text="Eliminar gasto" />
+                                        <Button fx:id="addGasto" mnemonicParsing="false" text="Añade gasto" />
+                                          <Button fx:id="deleteGasto" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" text="Eliminar gasto" />
                                       </items>
                                     </ToolBar>
                                  </children>
@@ -159,10 +160,11 @@
                                  <children>
                                     <TableView prefHeight="296.0" prefWidth="516.0">
                                        <columns>
-                                          <TableColumn prefWidth="130.4000244140625" text="Cantidad" />
-                                          <TableColumn prefWidth="155.20001220703125" text="Categoria" />
-                                          <TableColumn prefWidth="156.0" text="Fecha" />
-                                          <TableColumn prefWidth="75.99993896484375" text="Más info" />
+                                          <TableColumn fx:id="colNombre" prefWidth="106.4000244140625" text="Nombre" />
+                                          <TableColumn fx:id="colCantidad" prefWidth="108.79998779296875" text="Cantidad" />
+                                          <TableColumn fx:id="colCategoria" prefWidth="130.4000244140625" text="Categoria" />
+                                          <TableColumn fx:id="colFecha" prefWidth="98.4000244140625" text="Fecha" />
+                                          <TableColumn prefWidth="75.199951171875" text="Más info" />
                                        </columns>
                                     </TableView>
                                  </children>
