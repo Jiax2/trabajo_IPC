@@ -72,10 +72,9 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
 
     @FXML
     private void cambiarGasto(ActionEvent event) throws IOException {
-        cambio.getChildren().clear();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/gastos.fxml")); 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/homeScreen.fxml")); 
         Parent root = loader.load(); 
-        cambio.getChildren().add(root); 
+        setRoot(root);
     }
 
     @FXML
@@ -88,10 +87,16 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
 
     @FXML
     private void cambiarCuenta(ActionEvent event) throws IOException {
-        
+        cambio.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/cuenta.fxml")); 
+        Parent root = loader.load();
+        cambio.getChildren().add(root); 
     }
 
     @FXML
     private void exit(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/inicioSesion.fxml")); 
+        Parent root = loader.load(); 
+        setRoot(root);
     }
 }
