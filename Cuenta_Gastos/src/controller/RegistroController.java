@@ -11,10 +11,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafxmlapplication.JavaFXMLApplication;
+import model.Acount;
+import model.AcountDAOException;
+
 
 /**
  * FXML Controller class
@@ -22,6 +31,7 @@ import javafx.scene.text.Text;
  * @author jiaji
  */
 public class RegistroController implements Initializable {
+    
     @FXML
     private Button registrarse;
     @FXML
@@ -45,4 +55,30 @@ public class RegistroController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    @FXML
+    private void irInicioSesion(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/inicioSesion.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Iniciar sesión");
+    }
+    
+    @FXML
+    private void pulsadoRegistro(ActionEvent event) throws IOException, AcountDAOException {
+        if (nombre.getText().isEmpty() || usuario.getText().isEmpty() || pass1.getText().isEmpty() || pass2.getText().isEmpty() || mail.getText().isEmpty()){
+            error.setText("Faltan campos por completar");
+        }else if (Acount.getInstance().logInUserByCredentials(usuario.getText(), pass1.getText())==true){
+            error.setText("Ya existe este usuario");
+        } else {
+            Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            stage.setTitle("MalGastos");
+        }
+    }
 }

@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -55,17 +56,23 @@ public class inicioSesionController implements Initializable {
         } else if (Acount.getInstance().logInUserByCredentials(User.getText(), Password.getText())==false){
             errCon.setText("No existe el usuario");
         } else {
-            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/vista/homeScreen.fxml"));
-            Parent root = myLoader.load();
-            JavaFXMLApplication.setRoot(root);
+            Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            stage.setTitle("MalGastos");
         }
     }
     
     @FXML
     private void irRegistro(MouseEvent event) throws IOException {
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/vista/Registro.fxml"));
-        Parent root = myLoader.load();
-        JavaFXMLApplication.setRoot(root);
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/Registro.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Registrarse");
     }
     
 }

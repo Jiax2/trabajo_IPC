@@ -20,9 +20,6 @@ import javafx.stage.Stage;
 public class JavaFXMLApplication extends Application {
     private static Scene scene; 
     
-    public static void setRoot(Parent root){
-       scene.setRoot(root);
-    }
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/inicioSesion.fxml")); 
@@ -32,9 +29,11 @@ public class JavaFXMLApplication extends Application {
         stage.show();
         stage.setTitle("Iniciar sesión");
     }
+    
     public void cambiarInicio(){
        
     }
+    
     /**
      * @param args the command line arguments
      */
