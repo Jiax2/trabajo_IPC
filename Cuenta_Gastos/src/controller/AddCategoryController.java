@@ -4,29 +4,18 @@
  */
 package controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-import static javafxmlapplication.JavaFXMLApplication.setRoot;
 
 /**
  * FXML Controller class
  *
  * @author jiaji
  */
-public class CategoriasController implements Initializable {
-
-    @FXML
-    private BorderPane pantallaCategorias;
+public class AddCategoryController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -37,13 +26,11 @@ public class CategoriasController implements Initializable {
     }    
 
     @FXML
-    private void addCategoria(ActionEvent event) throws IOException { 
-        //addCategoria(event);
+    private void cancelarGasto(ActionEvent event) {
     }
 
     @FXML
-    private void deleteCategoria(ActionEvent event) throws IOException {
-       
+    private void aceptarGasto(ActionEvent event) {
     }
     
 }

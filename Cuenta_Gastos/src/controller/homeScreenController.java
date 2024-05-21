@@ -20,6 +20,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
 import model.*; 
@@ -29,7 +30,7 @@ import model.*;
  * Clase Controller para homeScreen.fxml
  * @author jiaji
  */
-public class homeScreenController extends JavaFXMLApplication implements Initializable {
+public class HomeScreenController extends JavaFXMLApplication implements Initializable {
 
     private JavaFXMLApplication main; 
     @FXML
@@ -41,7 +42,7 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private Button salir;
     @FXML
-    private VBox cambio;
+    public VBox cambio;
     @FXML
     private TableColumn<Charge, Double> colCantidad;
     @FXML
@@ -51,8 +52,6 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private TableColumn<Charge, Category> colCategoria;
     @FXML
-    private Button addGasto;
-    @FXML
     private Button deleteGasto;
     @FXML
     private VBox pantallaMensual;
@@ -60,14 +59,26 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
     private VBox pantallaAnual;
     @FXML
     private VBox pantallaTotal;
+    @FXML
+    private Button buttonAdd;
     
     private ObservableList<Charge> listaGastos = null; 
+    Stage stage = this.stage;
     //===============================================================
     //Botones de añadir y eliminar gastos
-    
+    @FXML
+    private void actionAddGasto(ActionEvent event) throws IOException {
+        cambio.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/addGastos.fxml")); 
+        Parent root = loader.load();
+        cambio.getChildren().add(root); 
+    }
     //=============================================================
     //Muestreo de los gastos en la lista
-    
+    private void inicializaModelo(){
+        ArrayList<Charge> misgatos = new ArrayList<Charge>(); 
+       
+    }
     
     
    
@@ -119,6 +130,14 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
         Parent root = loader.load();
         cambio.getChildren().add(root);
     }
+    
+//    @FXML
+//    public void addCategoria(ActionEvent event) throws IOException{
+//        cambio.getChildren().clear();
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/addCategory.fxml")); 
+//        Parent root = loader.load();
+//        cambio.getChildren().add(root);
+//    }
 
     @FXML
     private void exit(ActionEvent event) throws IOException {
@@ -127,8 +146,5 @@ public class homeScreenController extends JavaFXMLApplication implements Initial
         setRoot(root);
     }
     //===============================================================================================
-    
-    
-    
     
 }
