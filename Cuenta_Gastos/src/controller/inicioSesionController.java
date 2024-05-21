@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -38,8 +40,6 @@ public class inicioSesionController implements Initializable {
     private PasswordField Password;
     @FXML
     private Text errCon;
-    @FXML
-    private Button iniciar;
 
     /**
      * Initializes the controller class.
@@ -75,4 +75,16 @@ public class inicioSesionController implements Initializable {
         stage.setTitle("Registrarse");
     }
     
+    @FXML
+    private void info(ActionEvent event){
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setHeaderText("Información de la aplicación");
+        alert.setContentText("MalGastos\n"+"Es una aplicación para gestión de gastos.");
+        alert.showAndWait();
+    }
+    
+    @FXML
+    private void salir(ActionEvent event) {
+        System.exit(0);
+    }
 }

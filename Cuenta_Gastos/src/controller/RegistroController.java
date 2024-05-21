@@ -33,8 +33,6 @@ import model.AcountDAOException;
 public class RegistroController implements Initializable {
     
     @FXML
-    private Button registrarse;
-    @FXML
     private TextField nombre;
     @FXML
     private TextField usuario;

@@ -30,7 +30,7 @@ public class JavaFXMLApplication extends Application {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        stage.setTitle("Iniciar sesión");
+        stage.setTitle("MalGastos");
     }
     
     public void cambiarInicio(){
