@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -61,6 +63,7 @@ public class RegistroController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
     public Acount cuenta;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,26 +102,20 @@ public class RegistroController implements Initializable {
         }
     }
     
-//    @FXML
-//    private void imagen(ActionEvent event) throws FileNotFoundException{
-//        String url = "c:"+File.separator+"images"+File.separator;
-//        Image avatar = new Image(new FileInputStream(url)) {};
-//        imagen.imageProperty().setValue(avatar);
-//    }
+  /*@FXML
+  private void imagen(ActionEvent event) throws FileNotFoundException{
+      String url = "c:"+File.separator+"images"+File.separator;
+      Image avatar = new Image(new FileInputStream(url));
+      imagen.imageProperty().setValue(avatar);
+}*/
     
-    private boolean comprobarArrobaPunto(String cadena) {
-        // Encuentra la posición del primer "@" en la cadena
-        int posicionArroba = cadena.indexOf('@');
-        // Encuentra la posición del primer "." después del "@" encontrado
-        if (posicionArroba != -1) {  // Si se encuentra "@"
-            int posicionPunto = cadena.indexOf('.', posicionArroba);
-            // Verifica que el punto esté después del "@"
-            if (posicionPunto != -1) {  // Si se encuentra "."
-                return true;
-            }
-        }
-        // Si no se cumple alguna de las condiciones anteriores, retorna false
-        return false;
+    private boolean comprobarArrobaPunto(String mail){
+        // Compilar la expresión regular
+        Pattern pattern = Pattern.compile(EMAIL_REGEX);
+        // Crear un matcher para el string de entrada
+        Matcher matcher = pattern.matcher(mail);
+        // Devolver si el string coincide con la expresión regular
+        return matcher.matches();
     }
     
     private boolean Comprobar() throws AcountDAOException, IOException{
@@ -136,7 +133,9 @@ public class RegistroController implements Initializable {
         if(!comprobarArrobaPunto(mail.getText())){
             caseType="mailValido";
         }
-
+        if(pass1.getText().length()>20){
+        caseType="contraLarga";
+        }
         // Manejo de los casos identificados con switch
         switch (caseType) {
             case "faltanCampos":
@@ -150,6 +149,9 @@ public class RegistroController implements Initializable {
                 return false;
             case "mailValido":
                 error.setText("El correo no es válido");
+                return false;
+            case "contraLarga": 
+                error.setText("La contraseña es muy larga");
                 return false;
             default:
                 return true;
