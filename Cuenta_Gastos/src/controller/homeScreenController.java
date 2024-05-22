@@ -5,8 +5,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,11 +14,9 @@ import javafx.scene.Node;
 import javafx.scene.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
 import model.*; 
@@ -110,9 +106,11 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
 
     @FXML
     private void cambiarGasto(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/homeScreen.fxml")); 
-        Parent root = loader.load(); 
-        setRoot(root);
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -147,6 +145,7 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Iniciar sesión");
+        
     }
     //===============================================================================================
     

@@ -49,19 +49,19 @@
         </rowConstraints>
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
-            <TextField GridPane.columnIndex="1" />
+            <TextField fx:id="nameGasto" GridPane.columnIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" GridPane.rowIndex="1" />
-            <TextField prefHeight="38.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="descripGasto" prefHeight="38.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="cantidad" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" GridPane.rowIndex="4" />
-            <ChoiceBox prefHeight="26.0" prefWidth="266.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="pickerCategorias" prefHeight="26.0" prefWidth="266.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Unidades" GridPane.rowIndex="3" />
-            <TextField prefHeight="26.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="unidades" prefHeight="26.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha" GridPane.rowIndex="5" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <DatePicker fx:id="dateGasto" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Imagen" GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" text="Selecciona imagen" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button fx:id="imagenGasto" mnemonicParsing="false" text="Selecciona imagen" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
       <GridPane alignment="CENTER" prefHeight="46.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="2">

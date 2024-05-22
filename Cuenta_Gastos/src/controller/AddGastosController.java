@@ -11,8 +11,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
-import static javafxmlapplication.JavaFXMLApplication.setRoot;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import model.Category;
+import model.Acount; 
+import model.AcountDAOException;
 
 /**
  * FXML Controller class
@@ -21,24 +30,52 @@ import static javafxmlapplication.JavaFXMLApplication.setRoot;
  */
 public class AddGastosController implements Initializable {
 
+    @FXML
+    private TextField nameGasto;
+    @FXML
+    private TextField descripGasto;
+    @FXML
+    private TextField cantidad;
+    @FXML
+    private ChoiceBox<Category> pickerCategorias;
+    @FXML
+    private TextField unidades;
+    @FXML
+    private DatePicker dateGasto;
+    
+    @FXML
+    private Button imagenGasto;
+    
+    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        nameGasto = this.nameGasto; 
+        descripGasto = this.descripGasto; 
+        cantidad = this.cantidad; 
+        
     }    
-
+    
     @FXML
     private void cancelarGasto(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/homeScreen.fxml")); 
-        Parent root = loader.load(); 
-        setRoot(root);
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Iniciar sesión");
     }
-
+    boolean comprobar = true; 
     @FXML
-    private void aceptarGasto(ActionEvent event) {
-        
+    private void aceptarGasto(ActionEvent event) throws AcountDAOException, IOException {
+        while(comprobar){
+            
+        }
     }
+    
+    //Codigo comprobacion para asegurarse de que los valores introducidos son válidos
     
 }
