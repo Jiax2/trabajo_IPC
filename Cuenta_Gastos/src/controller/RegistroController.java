@@ -86,7 +86,7 @@ public class RegistroController implements Initializable {
     
     @FXML
     private void pulsadoRegistro(ActionEvent event) throws IOException, AcountDAOException{
-        if(Comprobar()){
+        while(Comprobar()){
             //Registrar el usuario
             cuenta.registerUser(nombre.getText(), apellido.getText(), mail.getText(), usuario.getText(), pass1.getText(), null, LocalDate.MAX);
             //Cambia a homeScreen
@@ -106,27 +106,50 @@ public class RegistroController implements Initializable {
 //        imagen.imageProperty().setValue(avatar);
 //    }
     
+    private boolean comprobarArrobaPunto(String cadena) {
+        // Encuentra la posición del primer "@" en la cadena
+        int posicionArroba = cadena.indexOf('@');
+        // Encuentra la posición del primer "." después del "@" encontrado
+        if (posicionArroba != -1) {  // Si se encuentra "@"
+            int posicionPunto = cadena.indexOf('.', posicionArroba);
+            // Verifica que el punto esté después del "@"
+            if (posicionPunto != -1) {  // Si se encuentra "."
+                return true;
+            }
+        }
+        // Si no se cumple alguna de las condiciones anteriores, retorna false
+        return false;
+    }
+    
     private boolean Comprobar() throws AcountDAOException, IOException{
        String caseType = "";
         // Identificación de la condición que se cumple
         if (nombre.getText().isEmpty() || usuario.getText().isEmpty() || pass1.getText().isEmpty() || pass2.getText().isEmpty() || mail.getText().isEmpty()) {
-            caseType = "missingFields";
-        } else if (Acount.getInstance().logInUserByCredentials(usuario.getText(), pass1.getText())) {
-            caseType = "userExists";
-        } else if (!pass1.getText().equals(pass2.getText())) {
-            caseType = "passwordMismatch";
+            caseType = "faltanCampos";
+        }
+        if (Acount.getInstance().logInUserByCredentials(usuario.getText(), pass1.getText())) {
+            caseType = "usuarioExiste";
+        }
+        if (!pass1.getText().equals(pass2.getText())) {
+            caseType = "contraseñaDif";
+        }
+        if(!comprobarArrobaPunto(mail.getText())){
+            caseType="mailValido";
         }
 
         // Manejo de los casos identificados con switch
         switch (caseType) {
-            case "missingFields":
+            case "faltanCampos":
                 error.setText("Faltan campos por completar");
                 return false;
-            case "userExists":
+            case "usuarioExiste":
                 error.setText("Ya existe este usuario");
                 return false;
-            case "passwordMismatch":
+            case "contraseñaDif":
                 error.setText("Las contraseñas no coinciden");
+                return false;
+            case "mailValido":
+                error.setText("El correo no es válido");
                 return false;
             default:
                 return true;
