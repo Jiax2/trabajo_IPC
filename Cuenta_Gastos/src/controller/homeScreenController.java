@@ -141,9 +141,12 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
 
     @FXML
     private void exit(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/inicioSesion.fxml")); 
-        Parent root = loader.load(); 
-        setRoot(root);
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/inicioSesion.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Iniciar sesión");
     }
     //===============================================================================================
     

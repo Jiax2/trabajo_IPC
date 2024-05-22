@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -19,9 +20,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.inicioSesionController">
    <children>
-      <MenuBar>
+      <MenuBar VBox.vgrow="ALWAYS">
         <menus>
           <Menu mnemonicParsing="false" text="Ayuda">
             <items>
@@ -34,7 +36,7 @@
       </MenuBar>
       <HBox id="hBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/inicioSesion.css">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="243.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="198.0" HBox.hgrow="ALWAYS">
                <children>
                   <ImageView fitHeight="212.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                      <image>
@@ -54,9 +56,10 @@
                   </Text>
                </children>
             </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="ALWAYS" />
             <GridPane alignment="CENTER_RIGHT" prefHeight="400.0" prefWidth="284.0" HBox.hgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" />
                   <ColumnConstraints hgrow="SOMETIMES" />
               </columnConstraints>
               <rowConstraints>
@@ -65,21 +68,28 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio sesión" GridPane.columnSpan="2">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Text>
+                  <VBox alignment="CENTER" GridPane.columnSpan="2">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio sesión" textAlignment="CENTER" wrappingWidth="191.71435546875">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                      <children>
-                        <Label alignment="CENTER_RIGHT" maxHeight="18.0" maxWidth="43.0" text="Usuario" VBox.vgrow="ALWAYS">
+                        <Label alignment="CENTER_RIGHT" maxHeight="18.0" maxWidth="43.0" text="Usuario:" VBox.vgrow="ALWAYS">
                            <VBox.margin>
-                              <Insets top="30.0" />
+                              <Insets right="3.0" top="30.0" />
                            </VBox.margin>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="62.0" text="Contraseña" VBox.vgrow="ALWAYS">
+                        <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="70.0" text="Contraseña:" VBox.vgrow="ALWAYS">
                            <VBox.margin>
-                              <Insets top="50.0" />
+                              <Insets right="3.0" top="50.0" />
                            </VBox.margin>
                         </Label>
                      </children>
