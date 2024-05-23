@@ -149,11 +149,18 @@ public class RegistroController implements Initializable {
             caseType = "contraseñaDif";
         }
         if(!comprobarArrobaPunto(mail.getText())){
-            caseType="mailValido";
+            caseType="mailInvalido";
         }
-        if(pass1.getText().length()>20){
-        caseType="contraLarga";
+        if(pass1.getText().length() < 8 || pass1.getText().length() > 20 || !Pattern.compile("\\d").matcher(pass1.getText()).find() ||
+           !Pattern.compile("[a-z]").matcher(pass1.getText()).find() || !Pattern.compile("[A-Z]").matcher(pass1.getText()).find() ||
+           !Pattern.compile("[!@#$%^&+=]").matcher(pass1.getText()).find() || Pattern.compile("\\s").matcher(pass1.getText()).find()){
+            caseType="contraInvalida";
         }
+        
+        if(usuario.getText().length() < 6 || usuario.getText().length() > 15 || usuario.getText().contains(" ")){
+            caseType="usuarioInvalido";
+        }
+
         // Manejo de los casos identificados con switch
         switch (caseType) {
             case "faltanCampos":
@@ -165,11 +172,14 @@ public class RegistroController implements Initializable {
             case "contraseñaDif":
                 error.setText("Las contraseñas no coinciden");
                 return false;
-            case "mailValido":
+            case "mailInvalido":
                 error.setText("El correo no es válido");
                 return false;
-            case "contraLarga": 
-                error.setText("La contraseña es muy larga");
+            case "contraInvalida": 
+                error.setText("Contraseña inválida");
+                return false;
+            case "usuarioInvalido": 
+                error.setText("Usuario inválido");
                 return false;
             default:
                 return true;
