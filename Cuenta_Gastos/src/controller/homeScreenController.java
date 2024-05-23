@@ -67,11 +67,12 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     private ImageView imagen;
     @FXML
     private Label usuario;
+    @FXML
+    private ImageView uImagen;
     
     private ObservableList<Charge> listaGastos = null; 
     Stage stage = this.stage;
-    @FXML
-    private ImageView uImagen;
+    
     public Acount cuentas;
     //===============================================================
     //Botones de añadir y eliminar gastos

@@ -91,7 +91,8 @@ public class RegistroController implements Initializable {
     private void pulsadoRegistro(ActionEvent event) throws IOException, AcountDAOException{
         while(Comprobar()){
             //Registrar el usuario
-            cuentas.registerUser(nombre.getText(), apellido.getText(), mail.getText(), usuario.getText(), pass1.getText(), userImagen, LocalDate.MAX);
+            cuentas.registerUser(nombre.getText(), apellido.getText(), mail.getText(),
+                    usuario.getText(), pass1.getText(), userImagen, LocalDate.MAX);
             //Cambia a homeScreen
             Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -108,7 +109,8 @@ public class RegistroController implements Initializable {
         fileChooser.setTitle("Seleccionar Imagen");
 
         // Configurar el filtro de extensión para mostrar solo archivos de imagen
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de imagen(*.png,*.jpg,*.jpeg,*.gif)" , "*.png", "*.jpg", "*.jpeg","*.gif");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de imagen(*.png,*.jpg,*.jpeg,*.gif)" ,
+                "*.png", "*.jpg", "*.jpeg","*.gif");
         fileChooser.getExtensionFilters().add(extFilter);
 
         // Mostrar el diálogo de selección de archivos y obtener la imagen seleccionada
