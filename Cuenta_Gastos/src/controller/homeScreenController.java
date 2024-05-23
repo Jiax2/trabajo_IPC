@@ -1,5 +1,6 @@
 package controller;
 
+import com.sun.javafx.logging.PlatformLogger.Level;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -14,12 +15,18 @@ import javafx.scene.Node;
 import javafx.scene.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
 import model.*; 
+import controller.RegistroController.*;
+import java.lang.System.Logger;
+import model.Acount;
+import model.AcountDAOException;
 
 /**
  * FXML Controller class
@@ -57,9 +64,15 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     private VBox pantallaTotal;
     @FXML
     private Button buttonAdd;
+    private ImageView imagen;
+    @FXML
+    private Label usuario;
     
     private ObservableList<Charge> listaGastos = null; 
     Stage stage = this.stage;
+    @FXML
+    private ImageView uImagen;
+    public Acount cuentas;
     //===============================================================
     //Botones de añadir y eliminar gastos
     @FXML
@@ -84,7 +97,14 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        /*try {
+            cuentas=cuentas.getInstance();
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        
     }    
     
 

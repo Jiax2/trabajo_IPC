@@ -27,12 +27,12 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="110.0" prefWidth="108.0">
                      <children>
-                        <ImageView fitHeight="81.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="uImagen" fitHeight="81.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/default.png" />
                            </image>
                         </ImageView>
-                        <Label text="Label" />
+                        <Label fx:id="usuario" text="Label" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="291.0" prefWidth="108.0">
