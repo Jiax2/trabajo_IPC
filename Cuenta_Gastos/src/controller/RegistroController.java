@@ -137,52 +137,47 @@ public class RegistroController implements Initializable {
     }
     
     private boolean Comprobar() throws AcountDAOException, IOException{
-       String caseType = "";
-        // Identificación de la condición que se cumple
-        if (nombre.getText().isEmpty() || usuario.getText().isEmpty() || pass1.getText().isEmpty() || pass2.getText().isEmpty() || mail.getText().isEmpty()) {
-            caseType = "faltanCampos";
-        }
-        if (Acount.getInstance().logInUserByCredentials(usuario.getText(), pass1.getText())) {
-            caseType = "usuarioExiste";
-        }
-        if (!pass1.getText().equals(pass2.getText())) {
-            caseType = "contraseñaDif";
-        }
-        if(!comprobarArrobaPunto(mail.getText())){
-            caseType="mailInvalido";
-        }
-        if(pass1.getText().length() < 8 || pass1.getText().length() > 20 || !Pattern.compile("\\d").matcher(pass1.getText()).find() ||
-           !Pattern.compile("[a-z]").matcher(pass1.getText()).find() || !Pattern.compile("[A-Z]").matcher(pass1.getText()).find() ||
-           !Pattern.compile("[!@#$%^&+=]").matcher(pass1.getText()).find() || Pattern.compile("\\s").matcher(pass1.getText()).find()){
-            caseType="contraInvalida";
-        }
-        
-        if(usuario.getText().length() < 6 || usuario.getText().length() > 15 || usuario.getText().contains(" ")){
-            caseType="usuarioInvalido";
+        String nombreText = nombre.getText();
+        String usuarioText = usuario.getText();
+        String pass1Text = pass1.getText();
+        String pass2Text = pass2.getText();
+        String mailText = mail.getText();
+
+        if(nombreText.isEmpty() || usuarioText.isEmpty() || pass1Text.isEmpty() || pass2Text.isEmpty() || mailText.isEmpty()){
+            error.setText("Faltan campos por completar");
+            return false;
         }
 
-        // Manejo de los casos identificados con switch
-        switch (caseType) {
-            case "faltanCampos":
-                error.setText("Faltan campos por completar");
-                return false;
-            case "usuarioExiste":
-                error.setText("Ya existe este usuario");
-                return false;
-            case "contraseñaDif":
-                error.setText("Las contraseñas no coinciden");
-                return false;
-            case "mailInvalido":
-                error.setText("El correo no es válido");
-                return false;
-            case "contraInvalida": 
-                error.setText("Contraseña inválida");
-                return false;
-            case "usuarioInvalido": 
-                error.setText("Usuario inválido");
-                return false;
-            default:
-                return true;
+        if(Acount.getInstance().logInUserByCredentials(usuarioText, pass1Text)){
+            error.setText("Ya existe este usuario");
+            return false;
         }
+
+        if(pass1Text.length() < 8 || pass1Text.length() > 20 ||
+        !pass1Text.matches(".*\\d.*") ||
+        !pass1Text.matches(".*[a-z].*") ||
+        !pass1Text.matches(".*[A-Z].*") ||
+        !pass1Text.matches(".*[!@#$%^&+=].*") ||
+        pass1Text.contains(" ")){
+            error.setText("Contraseña inválida");
+            return false;
+        }
+
+        if(!pass1Text.equals(pass2Text)){
+            error.setText("Las contraseñas no coinciden");
+            return false;
+        }
+
+        if(!comprobarArrobaPunto(mailText)){
+            error.setText("El correo no es válido");
+            return false;
+        }
+
+        if(usuarioText.length() < 6 || usuarioText.length() > 15 || usuarioText.contains(" ")){
+            error.setText("Usuario inválido");
+            return false;
+        }
+
+        return true;
     }
 }
