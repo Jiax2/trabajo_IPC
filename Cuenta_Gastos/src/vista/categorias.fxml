@@ -9,13 +9,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="pantallaCategorias" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CategoriasController">
+<BorderPane id="fondo" fx:id="pantallaCategorias" stylesheets="@../css/homeScreen.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CategoriasController">
    <top>
       <VBox alignment="CENTER" prefHeight="61.0" prefWidth="602.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="80.0" prefWidth="602.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Categorias">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorias">
                      <font>
                         <Font size="28.0" />
                      </font>
@@ -30,7 +30,7 @@
          <children>
             <VBox prefHeight="14.0" prefWidth="602.0">
                <children>
-                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                  <ToolBar id="fondo" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/homeScreen.css">
                     <items>
                       <Button fx:id="catAdd" mnemonicParsing="false" onAction="#addCategoria" text="Añadir Categoría" />
                         <Button fx:id="catDel" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteCategoria" text="Eliminar Categoría" />

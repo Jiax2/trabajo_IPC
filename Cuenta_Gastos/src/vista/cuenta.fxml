@@ -9,12 +9,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CuentaController">
+<BorderPane id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="600.0" stylesheets="@../css/homeScreen.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CuentaController">
    <top>
       <VBox alignment="CENTER" prefHeight="61.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cuenta">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Cuenta">
                <font>
                   <Font size="28.0" />
                </font>
@@ -30,9 +29,9 @@
                   <TextField editable="false" layoutX="237.0" layoutY="14.0" />
                   <TextField editable="false" layoutX="237.0" layoutY="49.0" />
                   <TextField layoutX="237.0" layoutY="87.0" />
-                  <Text layoutX="181.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
-                  <Text layoutX="174.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" />
-                  <Text layoutX="170.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
+                  <Text fill="WHITE" layoutX="181.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
+                  <Text fill="WHITE" layoutX="174.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" />
+                  <Text fill="WHITE" layoutX="170.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
                   <Hyperlink layoutX="237.0" layoutY="113.0" text="Cambiar contraseña" />
                </children>
             </AnchorPane>

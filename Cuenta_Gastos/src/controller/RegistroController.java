@@ -161,6 +161,8 @@ public class RegistroController implements Initializable {
         !pass1Text.matches(".*[!@#$%^&+=_-¿¡?*/ªº€].*") ||
         pass1Text.contains(" ")){
             error.setText("Contraseña inválida");
+            pass1.clear();
+            pass2.clear();
             return false;
         }
 

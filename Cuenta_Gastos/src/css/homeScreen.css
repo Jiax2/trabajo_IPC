@@ -1,5 +1,18 @@
 #fondo{
-    background-color: #121212;
+    -fx-background-color: #322F2C;
 }
 
+#boton{
+    -fx-background-color:#404040;
+    -fx-border-color:#FFFFFF;
+    
+}
+
+#texto{
+    -fx-text-fill: #FFFFFF;
+}
+
+#borde{
+    -fx-border-color:#FFFFFF;
+}
 
