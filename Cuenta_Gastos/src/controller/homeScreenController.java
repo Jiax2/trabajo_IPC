@@ -70,6 +70,7 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private ImageView uImagen;
     
+    
     private ObservableList<Charge> listaGastos = null; 
     Stage stage = this.stage;
     
@@ -89,7 +90,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         ArrayList<Charge> misgatos = new ArrayList<Charge>(); 
        
     }
-    
     
    
     //=============================================================

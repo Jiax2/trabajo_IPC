@@ -4,11 +4,34 @@
  */
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import model.Category;
+import model.Acount; 
+import model.AcountDAOException;
+import model.Charge;
 
 /**
  * FXML Controller class
@@ -16,21 +39,34 @@ import javafx.fxml.Initializable;
  * @author jiaji
  */
 public class AddCategoryController implements Initializable {
-
+    
+    @FXML
+    private TextField catName;
+    @FXML
+    private TextField catDes;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
     }    
 
     @FXML
-    private void cancelarGasto(ActionEvent event) {
+    private void cancelarCategoria(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Iniciar sesión");
     }
 
     @FXML
-    private void aceptarGasto(ActionEvent event) {
+    private void aceptarCategoria(ActionEvent event) throws AcountDAOException, IOException {
+        Acount.getInstance().registerCategory(catName.getText(), catDes.getText());
+        System.out.println("Creada");
     }
     
 }

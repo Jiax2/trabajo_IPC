@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="358.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCategoryController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="358.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCategoryController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.39996337890625" minWidth="10.0" prefWidth="103.19999160766602" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="443.200048828125" minWidth="10.0" prefWidth="359.200008392334" />
@@ -41,9 +41,9 @@
         </rowConstraints>
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
-            <TextField GridPane.columnIndex="1" />
+            <TextField fx:id="catName" GridPane.columnIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" GridPane.rowIndex="1" />
-            <TextField prefHeight="98.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="catDes" prefHeight="98.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <GridPane alignment="CENTER" prefHeight="46.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -57,12 +57,12 @@
          <children>
             <VBox alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#cancelarGasto" text="Cancelar" />
+                  <Button mnemonicParsing="false" onAction="#cancelarCategoria" text="Cancelar" />
                </children>
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="1">
                <children>
-                  <Button mnemonicParsing="false" onAction="#aceptarGasto" text="Aceptar" />
+                  <Button mnemonicParsing="false" onAction="#aceptarCategoria" text="Aceptar" />
                </children>
             </VBox>
          </children>
