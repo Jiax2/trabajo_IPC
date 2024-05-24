@@ -25,6 +25,10 @@ import javafxmlapplication.JavaFXMLApplication;
 import model.*; 
 import controller.RegistroController.*;
 import java.lang.System.Logger;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.scene.control.Tab;
+import javafx.scene.layout.GridPane;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -44,8 +48,7 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     private Button cuenta;
     @FXML
     private Button salir;
-    @FXML
-    public VBox cambio;
+    public GridPane cambio;
     @FXML
     private TableColumn<Charge, Double> colCantidad;
     @FXML
@@ -56,8 +59,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     private TableColumn<Charge, Category> colCategoria;
     @FXML
     private Button deleteGasto;
-    @FXML
-    private VBox pantallaMensual;
     @FXML
     private VBox pantallaAnual;
     @FXML
@@ -70,11 +71,17 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private ImageView uImagen;
     
-    
     private ObservableList<Charge> listaGastos = null; 
     Stage stage = this.stage;
     
     public Acount cuentas;
+    @FXML
+    private Tab mensualTab;
+    @FXML
+    private Tab anualTab;
+    @FXML
+    private Tab totalTab;
+    
     //===============================================================
     //Botones de añadir y eliminar gastos
     @FXML
@@ -86,10 +93,25 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     }
     //=============================================================
     //Muestreo de los gastos en la lista
-    private void inicializaModelo(){
-        ArrayList<Charge> misgatos = new ArrayList<Charge>(); 
-       
+    ArrayList<Charge> misgastos = new ArrayList<Charge>(); 
+    private void inicializaModelo() throws AcountDAOException, IOException{
+        
+        misgastos.add(Acount.getInstance().getUserCharges().get(0));
+        listaGastos =   FXCollections.observableList(misgastos);
+        
     }
+    
+    //getter del gasto 
+    Charge c; 
+    private void getter(List<Charge> ch){
+        for(int i= 0; i< ch.size(); i++){
+            c = ch.get(i); 
+            String u = String.valueOf(c.getUnits()); 
+            String p = String.valueOf(c.getCost()); 
+            
+        }
+    }
+    
     
    
     //=============================================================
@@ -105,7 +127,7 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         } catch (IOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }*/
-        
+       
     }    
     
 

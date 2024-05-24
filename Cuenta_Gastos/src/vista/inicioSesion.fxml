@@ -20,7 +20,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <GridPane id="fondo" stylesheets="@../css/inicioSesion.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.inicioSesionController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -104,12 +103,12 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <children>
-                              <TextField fx:id="User" maxHeight="25.6" maxWidth="300.0" VBox.vgrow="ALWAYS">
+                              <TextField fx:id="User" maxHeight="25.6" maxWidth="300.0" text="Plantita" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="20.0" top="25.0" />
                                  </VBox.margin>
                               </TextField>
-                              <PasswordField fx:id="Password" maxHeight="25.6" maxWidth="300.0" VBox.vgrow="ALWAYS">
+                              <PasswordField fx:id="Password" maxHeight="25.6" maxWidth="300.0" text="18Del091974!" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="20.0" top="45.0" />
                                  </VBox.margin>

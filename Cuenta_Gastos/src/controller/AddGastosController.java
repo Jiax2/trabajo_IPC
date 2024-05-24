@@ -63,43 +63,54 @@ public class AddGastosController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            categoriaPrueba();
-        } catch (AcountDAOException ex) {
-            Logger.getLogger(AddGastosController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AddGastosController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            categoriaPrueba();
+//        } catch (AcountDAOException ex) {
+//            Logger.getLogger(AddGastosController.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(AddGastosController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }    
     
     //=========
     //prueba categoria
-    private void categoriaPrueba() throws AcountDAOException, IOException{
-        boolean creado = Acount.getInstance().registerCategory("d", "d");
-        if(creado){
-            System.out.println("categoria creada");
-            pickerCategorias.setValue(Acount.getInstance().getUserCategories().get(0).getName());
-        }
-    }
+//    public boolean crearCategoriaPrueba() throws AcountDAOException, IOException{
+//            boolean creado1 = Acount.getInstance().registerCategory("ct", "ct");
+//            boolean creado2 = Acount.getInstance().registerCategory("ca", "ca");
+//            if(creado1&&creado2){
+//                System.out.println("categoria creada");
+//                return true; 
+//            }
+//            return false; 
+//    }
+//    private void categoriaPrueba() throws AcountDAOException, IOException{
+//        if(crearCategoriaPrueba()){
+//            pickerCategorias.getItems().addAll(Acount.getInstance().getUserCategories().get(3).getName());
+//            pickerCategorias.getItems().addAll(Acount.getInstance().getUserCategories().get(4).getName());
+//            pickerCategorias.getItems().addAll(Acount.getInstance().getUserCategories().get(1).getName());
+//            pickerCategorias.getItems().addAll(Acount.getInstance().getUserCategories().get(2).getName());
+//        }
+//    }
 
     @FXML
-    private void cancelarGasto(ActionEvent event) throws IOException {
+    private void cancelarGasto(ActionEvent event) throws IOException, AcountDAOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Iniciar sesión");
+       
     }
-    
+    Category c = null; 
+    //==============================================================================================
     @FXML
     private void aceptarGasto(ActionEvent event) throws AcountDAOException, IOException {
-        
-        Acount.getInstance().registerCharge(nameGasto.getText(), descripGasto.getText(), parseDouble(cantidad.getText()), parseInt(unidades.getText()), imagen, LocalDate.now(), Acount.getInstance().getUserCategories().get(0));
-        System.out.println("creado");
+//        Acount.getInstance().registerCharge(nameGasto.getText(), descripGasto.getText(), parseDouble(cantidad.getText()), parseInt(unidades.getText()), imagen, LocalDate.now(),c);
+//        System.out.println("creado");
     }
     
     //Codigo comprobacion para asegurarse de que los valores introducidos son válidos: 
-    //cantidad debe ser un valor numerico 
+    //cantidad debe ser un valor numerico, solo el campo imagen es opcional, los demás no pueden ser nulos, no puede existir dos categorias del mismo nombre
 
 }
