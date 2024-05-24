@@ -53,14 +53,14 @@
                               <Insets top="40.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MalGastos" textAlignment="CENTER" wrappingWidth="129.33669805526733" VBox.vgrow="ALWAYS">
+                        <Label id="texto" stylesheets="@../css/inicioSesion.css" text="MalGastos">
                            <font>
                               <Font name="System Bold Italic" size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="45.0" />
                            </VBox.margin>
-                        </Text>
+                        </Label>
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="ALWAYS" />
@@ -80,7 +80,7 @@
                               <Insets />
                            </GridPane.margin>
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio sesión" textAlignment="CENTER" wrappingWidth="191.71435546875">
+                              <Text id="texto" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio sesión" textAlignment="CENTER" wrappingWidth="191.71435546875">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -89,12 +89,12 @@
                         </VBox>
                         <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <children>
-                              <Label alignment="CENTER_RIGHT" maxHeight="18.0" maxWidth="43.0" text="Usuario:" VBox.vgrow="ALWAYS">
+                              <Label id="texto" alignment="CENTER_RIGHT" maxHeight="18.0" maxWidth="43.0" stylesheets="@../css/inicioSesion.css" text="Usuario:" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="3.0" top="30.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="70.0" text="Contraseña:" VBox.vgrow="ALWAYS">
+                              <Label id="texto" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="70.0" stylesheets="@../css/inicioSesion.css" text="Contraseña:" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="3.0" top="50.0" />
                                  </VBox.margin>
@@ -103,12 +103,12 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <children>
-                              <TextField fx:id="User" maxHeight="25.6" maxWidth="300.0" text="Plantita" VBox.vgrow="ALWAYS">
+                              <TextField fx:id="User" maxHeight="25.6" maxWidth="300.0" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="20.0" top="25.0" />
                                  </VBox.margin>
                               </TextField>
-                              <PasswordField fx:id="Password" maxHeight="25.6" maxWidth="300.0" text="18Del091974!" VBox.vgrow="ALWAYS">
+                              <PasswordField fx:id="Password" maxHeight="25.6" maxWidth="300.0" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="20.0" top="45.0" />
                                  </VBox.margin>
@@ -120,7 +120,7 @@
                               </Text>
                               <HBox prefHeight="3.0" prefWidth="184.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes cuenta?" />
+                                    <Text id="texto" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes cuenta?" />
                                     <Label id="Registro" onMouseClicked="#irRegistro" stylesheets="@../css/inicioSesion.css" text="Registrarse" underline="true" />
                                  </children>
                               </HBox>

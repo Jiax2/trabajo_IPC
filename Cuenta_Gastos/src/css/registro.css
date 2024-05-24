@@ -9,5 +9,13 @@ quisiera ser una mosca, para pararme en tu piel
 */
 
 #fondo{
-    background-color: #121212;
+    -fx-background-color: #322F2C;
+}
+
+#Inicio{
+    -fx-text-fill: #00BFFF;
+}
+
+#texto{
+    -fx-text-fill: #FFFFFF;
 }

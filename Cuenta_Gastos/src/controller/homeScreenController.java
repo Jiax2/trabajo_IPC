@@ -1,36 +1,40 @@
 package controller;
 
-import com.sun.javafx.logging.PlatformLogger.Level;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.*;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafxmlapplication.JavaFXMLApplication;
-import model.*; 
-import controller.RegistroController.*;
-import java.lang.System.Logger;
-import java.util.List;
-import javafx.collections.FXCollections;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafxmlapplication.JavaFXMLApplication;
 import model.Acount;
 import model.AcountDAOException;
+import model.Category;
+import model.Charge;
+import model.User;
 
 /**
  * FXML Controller class
@@ -48,6 +52,7 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     private Button cuenta;
     @FXML
     private Button salir;
+    @FXML
     public GridPane cambio;
     @FXML
     private TableColumn<Charge, Double> colCantidad;
@@ -70,11 +75,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     private Label usuario;
     @FXML
     private ImageView uImagen;
-    
-    private ObservableList<Charge> listaGastos = null; 
-    Stage stage = this.stage;
-    
-    public Acount cuentas;
     @FXML
     private Tab mensualTab;
     @FXML
@@ -82,7 +82,30 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private Tab totalTab;
     
+    private ObservableList<Charge> listaGastos = null; 
+    Stage stage = this.stage;
+    public Acount cuentas;
+    public User user;
+    
     //===============================================================
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        try{
+            cuentas=cuentas.getInstance();
+            user=cuentas.getLoggedUser();
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        uImagen.setImage(user.getImage());
+        usuario.setText(user.getNickName());
+       
+    }    
+    
     //Botones de añadir y eliminar gastos
     @FXML
     private void actionAddGasto(ActionEvent event) throws IOException {
@@ -112,25 +135,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         }
     }
     
-    
-   
-    //=============================================================
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        /*try {
-            cuentas=cuentas.getInstance();
-        } catch (AcountDAOException ex) {
-            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-       
-    }    
-    
-
     // Method to set the reference to the main application
     public void setMainApplication(JavaFXMLApplication mainApplication) {
         this.main = mainApplication;

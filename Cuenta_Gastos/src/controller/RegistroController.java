@@ -23,7 +23,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -109,8 +108,8 @@ public class RegistroController implements Initializable {
         fileChooser.setTitle("Seleccionar Imagen");
 
         // Configurar el filtro de extensión para mostrar solo archivos de imagen
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de imagen(*.png,*.jpg,*.jpeg,*.gif)" ,
-                "*.png", "*.jpg", "*.jpeg","*.gif");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de imagen(*.png,*.jpg,*.jpeg)" ,
+                "*.png", "*.jpg", "*.jpeg");
         fileChooser.getExtensionFilters().add(extFilter);
 
         // Mostrar el diálogo de selección de archivos y obtener la imagen seleccionada
@@ -159,7 +158,7 @@ public class RegistroController implements Initializable {
         !pass1Text.matches(".*\\d.*") ||
         !pass1Text.matches(".*[a-z].*") ||
         !pass1Text.matches(".*[A-Z].*") ||
-        !pass1Text.matches(".*[!@#$%^&+=].*") ||
+        !pass1Text.matches(".*[!@#$%^&+=_-¿¡?*/ªº€].*") ||
         pass1Text.contains(" ")){
             error.setText("Contraseña inválida");
             return false;

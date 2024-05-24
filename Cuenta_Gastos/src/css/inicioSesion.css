@@ -7,10 +7,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : jiaji
 */
 #fondo{
-    -fx-background-color: #F0F8FF;
+    -fx-background-color: #322F2C;
 }
 
 #Registro{
-    -fx-text-fill: #0000CD;
+    -fx-text-fill: #00BFFF;
+}
+
+#texto{
+    -fx-text-fill: #FFFFFF;
 }
 

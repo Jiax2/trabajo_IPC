@@ -51,7 +51,7 @@
                   </ImageView>
                </children>
             </GridPane>
-            <Label fx:id="usuario" prefHeight="14.0" prefWidth="28.0" text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <Label fx:id="usuario" alignment="CENTER" prefHeight="18.0" prefWidth="156.0" text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="5.0" />
                </GridPane.margin>

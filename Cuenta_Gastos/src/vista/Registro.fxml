@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane prefHeight="447.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistroController">
+<GridPane id="fondo" prefHeight="447.0" prefWidth="899.0" stylesheets="@../css/registro.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistroController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -24,7 +24,7 @@
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="903.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <HBox id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="903.0" stylesheets="@../css/registro.css" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="447.0" prefWidth="64.0" HBox.hgrow="ALWAYS">
                <children>
@@ -36,11 +36,14 @@
                         <Insets top="40.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MalGastos">
+                  <Label id="texto" stylesheets="@../css/registro.css" text="MalGastos">
                      <font>
                         <Font name="System Bold Italic" size="22.0" />
                      </font>
-                  </Text>
+                     <VBox.margin>
+                        <Insets top="45.0" />
+                     </VBox.margin>
+                  </Label>
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -58,32 +61,32 @@
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="8.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
                            <VBox.margin>
                               <Insets right="3.0" top="8.0" />
                            </VBox.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido:">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido:">
                            <VBox.margin>
                               <Insets right="3.0" top="11.0" />
                            </VBox.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario:">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario:">
                            <VBox.margin>
                               <Insets right="3.0" top="11.0" />
                            </VBox.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:">
                            <VBox.margin>
                               <Insets right="3.0" top="14.0" />
                            </VBox.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Repetir contraseña:">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Repetir contraseña:">
                            <VBox.margin>
                               <Insets right="3.0" top="14.0" />
                            </VBox.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" wrappingWidth="39.512874484062195">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" wrappingWidth="39.512874484062195">
                            <VBox.margin>
                               <Insets right="3.0" top="11.0" />
                            </VBox.margin>
@@ -135,8 +138,8 @@
                         <Text fx:id="error" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
                         <HBox prefHeight="5.0" prefWidth="74.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="¿Ya tienes cuenta?" />
-                              <Label onMouseClicked="#irInicioSesion" text="Iniciar sesión" underline="true" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Ya tienes cuenta?" />
+                              <Label id="Inicio" onMouseClicked="#irInicioSesion" stylesheets="@../css/registro.css" text="Iniciar sesión" underline="true" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="20.0" />
@@ -151,7 +154,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Foto de perfil">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Foto de perfil">
                            <VBox.margin>
                               <Insets left="15.0" />
                            </VBox.margin></Text>
@@ -167,7 +170,7 @@
                               <Insets left="15.0" />
                            </VBox.margin>
                         </Button>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(Opcional)">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="(Opcional)">
                            <VBox.margin>
                               <Insets left="15.0" />
                            </VBox.margin></Text>
@@ -175,7 +178,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Registro">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro">
                            <font>
                               <Font size="30.0" />
                            </font>
