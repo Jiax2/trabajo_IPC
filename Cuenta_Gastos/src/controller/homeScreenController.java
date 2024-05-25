@@ -65,9 +65,7 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private Button deleteGasto;
     @FXML
-    private VBox pantallaAnual;
-    @FXML
-    private VBox pantallaTotal;
+    private GridPane pantallaTotal;
     @FXML
     private Button buttonAdd;
     private ImageView imagen;
