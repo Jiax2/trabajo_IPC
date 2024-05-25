@@ -161,11 +161,7 @@
                            </VBox.margin></Text>
                         <Button mnemonicParsing="false" onAction="#imagen" prefHeight="77.0" prefWidth="79.0">
                            <graphic>
-                              <ImageView fx:id="imagen" fitHeight="65.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/default.png" />
-                                 </image>
-                              </ImageView>
+                              <ImageView fx:id="imagen" fitHeight="65.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                            <VBox.margin>
                               <Insets left="15.0" />

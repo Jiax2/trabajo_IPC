@@ -14,11 +14,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -71,18 +73,29 @@ public class RegistroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            cuentas=cuentas.getInstance();
-        } catch (AcountDAOException ex) {
-            Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+            cuentas = Acount.getInstance();
+            
+        } catch (AcountDAOException | IOException ex) {
             Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        registro.disableProperty().bind(nombre.textProperty().isEmpty());
-        registro.disableProperty().bind(apellido.textProperty().isEmpty());
-        registro.disableProperty().bind(usuario.textProperty().isEmpty());
-        registro.disableProperty().bind(pass1.textProperty().isEmpty());
-        registro.disableProperty().bind(pass2.textProperty().isEmpty());
-        registro.disableProperty().bind(mail.textProperty().isEmpty());
+        
+        userImagen = defaultImagen();
+        imagen.setImage(userImagen);
+        
+        registro.disableProperty().bind(Bindings.createBooleanBinding(() ->
+                nombre.getText().isEmpty() ||
+                apellido.getText().isEmpty() ||
+                usuario.getText().isEmpty() ||
+                pass1.getText().isEmpty() ||
+                pass2.getText().isEmpty() ||
+                mail.getText().isEmpty(),
+                nombre.textProperty(),
+                apellido.textProperty(),
+                usuario.textProperty(),
+                pass1.textProperty(),
+                pass2.textProperty(),
+                mail.textProperty()
+        ));
     }    
     
     @FXML
@@ -180,11 +193,16 @@ public class RegistroController implements Initializable {
             return false;
         }
 
-        if(usuarioText.length() < 6 || usuarioText.length() > 15 || usuarioText.contains(" ")){
+        if(usuarioText.length() <= 6 || usuarioText.length() >= 15 || usuarioText.contains(" ")){
             error.setText("Usuario inválido");
             return false;
         }
 
         return true;
+    }
+    
+     private Image defaultImagen() {
+        InputStream input = getClass().getResourceAsStream("/images/default.png");
+        return new Image(input);
     }
 }

@@ -86,27 +86,23 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     Stage stage = this.stage;
     public Acount cuentas;
     public User user;
-    
     //===============================================================
     /**
      * Initializes the controller class.
-     */
+ */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Carga el usuario
         try{
             cuentas=cuentas.getInstance();
-            user=cuentas.getLoggedUser();
-            if(user.getImage()!=null){
-                uImagen.setImage(user.getImage());
-            }
-        usuario.setText(user.getNickName());
+            this.user=cuentas.getLoggedUser();
+            uImagen.setImage(user.getImage());
+            usuario.setText(user.getNickName());
         } catch (AcountDAOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-       
     }    
     
     //Botones de añadir y eliminar gastos

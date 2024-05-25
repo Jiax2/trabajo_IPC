@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,8 +49,14 @@ public class inicioSesionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        inicio.disableProperty().bind(User.textProperty().isEmpty());
-        inicio.disableProperty().bind(Password.textProperty().isEmpty());
+        //Desabilita boton inicio
+        inicio.disableProperty().bind(Bindings.createBooleanBinding(() ->
+                User.getText().isEmpty() ||
+                Password.getText().isEmpty(),
+                User.textProperty(),
+                Password.textProperty()
+              
+        ));
     }
     
     @FXML

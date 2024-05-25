@@ -11,7 +11,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -44,11 +43,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ImageView fx:id="uImagen" fitHeight="82.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../images/default.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="uImagen" fitHeight="82.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
             <Label id="texto" fx:id="usuario" alignment="CENTER" prefHeight="18.0" prefWidth="156.0" stylesheets="@../css/Styles.css" text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
