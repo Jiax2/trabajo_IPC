@@ -4,12 +4,14 @@
  */
 package controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +29,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Category;
 import model.Acount; 
@@ -52,65 +57,92 @@ public class AddGastosController implements Initializable {
     private TextField unidades;
     @FXML
     private DatePicker dateGasto;
+    private ImageView imagenView;
     
+    public Image gastoImagen=null; 
     @FXML
     private Button imagenGasto;
-    
-    private Image imagen = null; 
-
+    @FXML
+    private Button cancelarButton;
+    @FXML
+    private Button aceptarButton;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        try {
-//            categoriaPrueba();
-//        } catch (AcountDAOException ex) {
-//            Logger.getLogger(AddGastosController.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(AddGastosController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            listacategoria();
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(AddGastosController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AddGastosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
     
-    //=========
-    //prueba categoria
-//    public boolean crearCategoriaPrueba() throws AcountDAOException, IOException{
-//            boolean creado1 = Acount.getInstance().registerCategory("ct", "ct");
-//            boolean creado2 = Acount.getInstance().registerCategory("ca", "ca");
-//            if(creado1&&creado2){
-//                System.out.println("categoria creada");
-//                return true; 
-//            }
-//            return false; 
-//    }
-//    private void categoriaPrueba() throws AcountDAOException, IOException{
-//        if(crearCategoriaPrueba()){
-//            pickerCategorias.getItems().addAll(Acount.getInstance().getUserCategories().get(3).getName());
-//            pickerCategorias.getItems().addAll(Acount.getInstance().getUserCategories().get(4).getName());
-//            pickerCategorias.getItems().addAll(Acount.getInstance().getUserCategories().get(1).getName());
-//            pickerCategorias.getItems().addAll(Acount.getInstance().getUserCategories().get(2).getName());
-//        }
-//    }
+    private void imagen(ActionEvent event) throws IOException{
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar Imagen");
 
+        // Configurar el filtro de extensión para mostrar solo archivos de imagen
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de imagen(.png,.jpg,*.jpeg)" ,
+                ".png", ".jpg", "*.jpeg");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Mostrar el diálogo de selección de archivos y obtener la imagen seleccionada
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile != null) {
+            try {
+                // Cargar la imagen seleccionada en un objeto Image
+                gastoImagen = new Image(selectedFile.toURI().toString());
+
+                // Establecer la imagen en el ImageView correspondiente
+                imagenView.setImage(gastoImagen); 
+            } catch (Exception e) {
+                // Manejar cualquier excepción que pueda ocurrir al cargar la imagen
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    private void listacategoria() throws AcountDAOException, IOException{
+        List<Category> lista = Acount.getInstance().getUserCategories(); 
+        for(int i = 0; i< lista.size(); i++){
+            pickerCategorias.getItems().addAll( lista.get(i).getName());
+        }
+    }
+    
+    public Category findCategory() throws AcountDAOException, IOException{
+        Category cat = null; 
+        List<Category> list = Acount.getInstance().getUserCategories();
+        String s = pickerCategorias.getSelectionModel().getSelectedItem(); 
+        for(int i = 0; i<list.size(); i++){
+            cat = list.get(i); 
+            if(s.equals(cat.getName())){
+                return cat; 
+            }
+        }
+        return cat; 
+    }
     @FXML
     private void cancelarGasto(ActionEvent event) throws IOException, AcountDAOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        stage.setTitle("Iniciar sesión");
-       
-    }
-    Category c = null; 
-    //==============================================================================================
+        cancelarButton.getScene().setRoot(root);
+    } 
+    
     @FXML
     private void aceptarGasto(ActionEvent event) throws AcountDAOException, IOException {
-//        Acount.getInstance().registerCharge(nameGasto.getText(), descripGasto.getText(), parseDouble(cantidad.getText()), parseInt(unidades.getText()), imagen, LocalDate.now(),c);
-//        System.out.println("creado");
+        Category cat = findCategory(); 
+//        System.out.println(findCategory().getName());
+        String name = nameGasto.getText(); 
+        String descripcion = descripGasto.getText(); 
+        Double cost = parseDouble(cantidad.getText());
+//       Category c = pickerCategorias.getValue();
+       LocalDate date = dateGasto.getValue(); 
+        
+        Acount.getInstance().registerCharge(name, descripcion,cost , parseInt(unidades.getText()), gastoImagen, date, cat);
+        System.out.println("creado");
     }
-    
     //Codigo comprobacion para asegurarse de que los valores introducidos son válidos: 
     //cantidad debe ser un valor numerico, solo el campo imagen es opcional, los demás no pueden ser nulos, no puede existir dos categorias del mismo nombre
-
 }

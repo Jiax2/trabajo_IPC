@@ -51,7 +51,7 @@
                   <Insets bottom="5.0" />
                </GridPane.margin>
             </Label>
-            <Button id="boton" fx:id="gastos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cambiarGasto" prefHeight="66.0" prefWidth="158.0" stylesheets="@../css/Styles.css" text="Gastos" textFill="WHITE" GridPane.rowIndex="1">
+            <Button id="boton" fx:id="gastos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="66.0" minWidth="158.0" mnemonicParsing="false" onAction="#cambiarGasto" prefHeight="66.0" prefWidth="158.0" stylesheets="@../css/Styles.css" text="Gastos" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font size="20.0" />
                </font>
@@ -141,32 +141,32 @@
                   </Tab>
                   <Tab fx:id="anualTab" text="Anual">
                      <content>
-                        <VBox fx:id="pantallaAnual" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="350.0" prefWidth="500.0">
+                        <GridPane>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="35.99998779296875" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="288.00001220703126" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
-                              <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="516.0">
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gasto anual">
-                                       <font>
-                                          <Font size="28.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="322.0" prefWidth="516.0">
-                                 <children>
-                                    <BarChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="273.0" prefWidth="503.0">
-                                      <xAxis>
-                                        <CategoryAxis id="texto" side="BOTTOM" stylesheets="@../css/Styles.css" tickLabelFill="WHITE" />
-                                      </xAxis>
-                                      <yAxis>
-                                        <NumberAxis id="texto" side="LEFT" stylesheets="@../css/Styles.css" tickLabelFill="WHITE" />
-                                      </yAxis>
-                                    </BarChart>
-                                    <Button id="botonAc" mnemonicParsing="false" stylesheets="@../css/Styles.css" text="Imprime reporte" />
-                                 </children>
-                              </VBox>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gasto anual" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Text>
+                              <BarChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="383.0" prefWidth="522.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                <xAxis>
+                                  <CategoryAxis id="texto" side="BOTTOM" stylesheets="@../css/Styles.css" tickLabelFill="WHITE" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis id="texto" side="LEFT" stylesheets="@../css/Styles.css" tickLabelFill="WHITE" />
+                                </yAxis>
+                              </BarChart>
+                              <Button id="botonAc" mnemonicParsing="false" stylesheets="@../css/Styles.css" text="Imprime reporte" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                            </children>
-                        </VBox>
+                        </GridPane>
                      </content>
                   </Tab>
                   <Tab fx:id="totalTab" text="Total">
