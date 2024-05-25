@@ -1,8 +1,5 @@
 package controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -11,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,13 +24,12 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafxmlapplication.JavaFXMLApplication;
 import model.Acount;
 import model.AcountDAOException;
@@ -82,7 +77,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     private Tab mensualTab;
     @FXML
     private Tab anualTab;
-    @FXML
     private Tab totalTab;
      @FXML
     private TableView<Charge> tablaMes;
@@ -102,6 +96,8 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     public User user;
     @FXML
     private TableColumn<?, ?> colInfo;
+    @FXML
+    private TabPane tabPane;
     //===============================================================
     /**
      * Initializes the controller class.
@@ -117,12 +113,12 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
             usuario.setText(user.getNickName());
             inicializaMes();
             inicializaTot();
+            
         } catch (AcountDAOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }    
     
     //Botones de añadir y eliminar gastos
@@ -241,30 +237,16 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         Charge selectedCharge = tablaTot.getSelectionModel().getSelectedItem();
         Acount.getInstance().removeCharge(selectedCharge);
         System.out.println("eliminado");
-//        try {
-//            Acount acount = Acount.getInstance();
-//           listaGastosTot.addAll(acount.getUserCharges());
-//        } catch (IOException | AcountDAOException e) {
-//        }
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
-        gastos.getScene().setRoot(root);
+        inicializaTot();
+        tabPane.getSelectionModel().select(totalTab);
         changeTotal(event);
     }
 
-    @FXML
-    private void changeMensual(Event event) {
-        mensualTab.getOnSelectionChanged(); 
-    }
 
-    @FXML
-    private void changeAnual(Event event) {
-        anualTab.getOnSelectionChanged(); 
-    }
-
-    @FXML
     private void changeTotal(Event event) {
-        anualTab.getOnSelectionChanged();
+      
     }
+    
     
     
     

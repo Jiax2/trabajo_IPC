@@ -81,9 +81,9 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TabPane id="borde" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="539.0" stylesheets="@../css/Styles.css">
+            <TabPane id="borde" fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="539.0" stylesheets="@../css/Styles.css">
                <tabs>
-                  <Tab fx:id="mensualTab" onSelectionChanged="#changeMensual" text="Mensual">
+                  <Tab fx:id="mensualTab" text="Mensual">
                      <content>
                         <GridPane prefHeight="100.0" prefWidth="522.0">
                            <columnConstraints>
@@ -137,7 +137,7 @@
                         </GridPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="anualTab" onSelectionChanged="#changeAnual" text="Anual">
+                  <Tab fx:id="anualTab" text="Anual">
                      <content>
                         <GridPane>
                            <columnConstraints>
@@ -173,7 +173,7 @@
                         </GridPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="totalTab" onSelectionChanged="#changeTotal" text="Total">
+                  <Tab text="Total">
                      <content>
                         <GridPane fx:id="pantallaTotal">
                            <columnConstraints>
