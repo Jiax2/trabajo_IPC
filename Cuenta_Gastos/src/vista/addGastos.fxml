@@ -68,7 +68,7 @@
                <graphic>
                   <ImageView fx:id="ImagenView" fitHeight="22.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                </graphic></Button>
-            <Text fx:id="mensajeError" strokeType="OUTSIDE" strokeWidth="0.0" text="Error" wrappingWidth="28.81719970703125" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Text fx:id="mensajeError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="28.81719970703125" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin></Text>
