@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -58,12 +59,15 @@ public class RegistroController implements Initializable {
     private ImageView imagen;
     @FXML
     private TextField apellido;
+    @FXML
+    private Button registro;
     /**
      * Initializes the controller class.
      */
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
     public Acount cuentas;
     public Image userImagen=null;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -73,6 +77,12 @@ public class RegistroController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        registro.disableProperty().bind(nombre.textProperty().isEmpty());
+        registro.disableProperty().bind(apellido.textProperty().isEmpty());
+        registro.disableProperty().bind(usuario.textProperty().isEmpty());
+        registro.disableProperty().bind(pass1.textProperty().isEmpty());
+        registro.disableProperty().bind(pass2.textProperty().isEmpty());
+        registro.disableProperty().bind(mail.textProperty().isEmpty());
     }    
     
     @FXML
@@ -91,7 +101,7 @@ public class RegistroController implements Initializable {
         while(Comprobar()){
             //Registrar el usuario
             cuentas.registerUser(nombre.getText(), apellido.getText(), mail.getText(),
-                    usuario.getText(), pass1.getText(), userImagen, LocalDate.MAX);
+                    usuario.getText(), pass1.getText(), userImagen, LocalDate.now());
             //Cambia a homeScreen
             Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -138,23 +148,17 @@ public class RegistroController implements Initializable {
     }
     
     private boolean Comprobar() throws AcountDAOException, IOException{
-        String nombreText = nombre.getText();
         String usuarioText = usuario.getText();
         String pass1Text = pass1.getText();
         String pass2Text = pass2.getText();
         String mailText = mail.getText();
-
-        if(nombreText.isEmpty() || usuarioText.isEmpty() || pass1Text.isEmpty() || pass2Text.isEmpty() || mailText.isEmpty()){
-            error.setText("Faltan campos por completar");
-            return false;
-        }
 
         if(Acount.getInstance().logInUserByCredentials(usuarioText, pass1Text)){
             error.setText("Ya existe este usuario");
             return false;
         }
 
-        if(pass1Text.length() < 8 || pass1Text.length() > 20 ||
+        if(pass1Text.length() <= 8 || pass1Text.length() >= 20 ||
         !pass1Text.matches(".*\\d.*") ||
         !pass1Text.matches(".*[a-z].*") ||
         !pass1Text.matches(".*[A-Z].*") ||

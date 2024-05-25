@@ -96,13 +96,16 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         try{
             cuentas=cuentas.getInstance();
             user=cuentas.getLoggedUser();
+            if(user.getImage()!=null){
+                uImagen.setImage(user.getImage());
+            }
+        usuario.setText(user.getNickName());
         } catch (AcountDAOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        uImagen.setImage(user.getImage());
-        usuario.setText(user.getNickName());
+        
        
     }    
     

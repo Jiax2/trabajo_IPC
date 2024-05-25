@@ -8,6 +8,10 @@
     
 }
 
+#botonAc{
+    -fx-background-color:#D5D5D5;
+}
+
 #texto{
     -fx-text-fill: #FFFFFF;
 }
@@ -16,3 +20,6 @@
     -fx-border-color:#FFFFFF;
 }
 
+#acText{
+    -fx-text-fill: #00BFFF;
+}

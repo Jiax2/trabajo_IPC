@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="358.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCategoryController">
+<GridPane id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="358.0" prefWidth="496.0" stylesheets="@../css/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCategoryController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.39996337890625" minWidth="10.0" prefWidth="103.19999160766602" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="443.200048828125" minWidth="10.0" prefWidth="359.200008392334" />
@@ -23,7 +23,7 @@
    <children>
       <VBox alignment="CENTER" GridPane.columnIndex="1">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Añade una Categoria">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Añade una Categoria">
                <font>
                   <Font size="18.0" />
                </font>
@@ -40,9 +40,9 @@
           <RowConstraints maxHeight="155.20000762939452" minHeight="10.0" prefHeight="152.79998321533202" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
             <TextField fx:id="catName" GridPane.columnIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" GridPane.rowIndex="1" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" GridPane.rowIndex="1" />
             <TextField fx:id="catDes" prefHeight="98.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
@@ -57,12 +57,12 @@
          <children>
             <VBox alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#cancelarCategoria" text="Cancelar" />
+                  <Button id="botonAc" mnemonicParsing="false" onAction="#cancelarCategoria" stylesheets="@../css/Styles.css" text="Cancelar" />
                </children>
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="1">
                <children>
-                  <Button mnemonicParsing="false" onAction="#aceptarCategoria" text="Aceptar" />
+                  <Button id="botonAc" mnemonicParsing="false" onAction="#aceptarCategoria" text="Aceptar" />
                </children>
             </VBox>
          </children>

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane id="fondo" prefHeight="447.0" prefWidth="899.0" stylesheets="@../css/registro.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistroController">
+<GridPane id="fondo" prefHeight="447.0" prefWidth="899.0" stylesheets="@../css/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistroController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -24,7 +25,7 @@
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <HBox id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="903.0" stylesheets="@../css/registro.css" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="903.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="447.0" prefWidth="64.0" HBox.hgrow="ALWAYS">
                <children>
@@ -36,7 +37,7 @@
                         <Insets top="40.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label id="texto" stylesheets="@../css/registro.css" text="MalGastos">
+                  <Label id="texto" stylesheets="@../css/Styles.css" text="MalGastos">
                      <font>
                         <Font name="System Bold Italic" size="22.0" />
                      </font>
@@ -110,7 +111,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label id="texto" stylesheets="@../css/registro.css" text="(*No puede contener espacios*)">
+                        <Label id="texto" stylesheets="@../css/Styles.css" text="(*No puede contener espacios*)">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -120,7 +121,7 @@
                               <Insets />
                            </VBox.margin>
                         </PasswordField>
-                        <Label id="texto" stylesheets="@../css/registro.css" text="(*Tiene que contener un dígito, una minúscula, mayúscula y un caracter especial*)">
+                        <Label id="texto" stylesheets="@../css/Styles.css" text="(*Tiene que contener un dígito, una minúscula, mayúscula y un caracter especial*)">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -136,16 +137,16 @@
                            </VBox.margin>
                         </TextField>
                         <Text fx:id="error" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <HBox prefHeight="5.0" prefWidth="74.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="5.0" prefWidth="74.0">
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Ya tienes cuenta?" />
-                              <Label id="Inicio" onMouseClicked="#irInicioSesion" stylesheets="@../css/registro.css" text="Iniciar sesión" underline="true" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Ya tienes cuenta?" wrappingWidth="97.048828125" />
+                              <Hyperlink id="acText" onMouseClicked="#irInicioSesion" prefHeight="0.0" prefWidth="77.0" stylesheets="@../css/Styles.css" text="Iniciar sesión" underline="true" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <Button mnemonicParsing="false" onAction="#pulsadoRegistro" prefHeight="30.0" text="Registrarse">
+                        <Button id="botonAc" fx:id="registro" defaultButton="true" mnemonicParsing="false" onAction="#pulsadoRegistro" prefHeight="30.0" stylesheets="@../css/Styles.css" text="Registrarse">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>

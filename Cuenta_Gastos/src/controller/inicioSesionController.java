@@ -40,20 +40,21 @@ public class inicioSesionController implements Initializable {
     private PasswordField Password;
     @FXML
     private Text errCon;
+    @FXML
+    private Button inicio;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Initialization logic if needed
+        inicio.disableProperty().bind(User.textProperty().isEmpty());
+        inicio.disableProperty().bind(Password.textProperty().isEmpty());
     }
     
     @FXML
     private void pulsadoIniciar(ActionEvent event) throws IOException, AcountDAOException {
-        if (User.getText().isEmpty() || Password.getText().isEmpty()) {
-            errCon.setText("Faltan campos por completar");
-        } else if (Acount.getInstance().logInUserByCredentials(User.getText(), Password.getText())==false){
+        if (Acount.getInstance().logInUserByCredentials(User.getText(), Password.getText())==false){
             errCon.setText("No existe el usuario");
         } else {
             Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));

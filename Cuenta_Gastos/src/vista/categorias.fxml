@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="fondo" fx:id="pantallaCategorias" stylesheets="@../css/homeScreen.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CategoriasController">
+<BorderPane id="fondo" fx:id="pantallaCategorias" stylesheets="@../css/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CategoriasController">
    <top>
       <VBox alignment="CENTER" prefHeight="61.0" prefWidth="602.0" BorderPane.alignment="CENTER">
          <children>
@@ -30,10 +30,10 @@
          <children>
             <VBox prefHeight="14.0" prefWidth="602.0">
                <children>
-                  <ToolBar id="fondo" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/homeScreen.css">
+                  <ToolBar id="fondo" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/Styles.css">
                     <items>
-                      <Button fx:id="catAdd" mnemonicParsing="false" onAction="#addCategoria" text="Añadir Categoría" />
-                        <Button fx:id="catDel" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteCategoria" text="Eliminar Categoría" />
+                      <Button id="botonAc" fx:id="catAdd" mnemonicParsing="false" onAction="#addCategoria" stylesheets="@../css/Styles.css" text="Añadir Categoría" />
+                        <Button id="botonAc" fx:id="catDel" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteCategoria" text="Eliminar Categoría" />
                     </items>
                   </ToolBar>
                </children>

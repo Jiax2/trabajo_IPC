@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -20,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane id="fondo" stylesheets="@../css/inicioSesion.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.inicioSesionController">
+<GridPane id="fondo" stylesheets="@../css/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.inicioSesionController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -28,7 +29,7 @@
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <VBox id="fondo" stylesheets="@../css/inicioSesion.css" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <VBox GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
             <MenuBar VBox.vgrow="ALWAYS">
               <menus>
@@ -41,7 +42,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <HBox id="fondo" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/inicioSesion.css">
+            <HBox id="fondo" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/Styles.css">
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="198.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -53,7 +54,7 @@
                               <Insets top="40.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Label id="texto" stylesheets="@../css/inicioSesion.css" text="MalGastos">
+                        <Label id="texto" stylesheets="@../css/Styles.css" text="MalGastos">
                            <font>
                               <Font name="System Bold Italic" size="22.0" />
                            </font>
@@ -89,12 +90,12 @@
                         </VBox>
                         <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <children>
-                              <Label id="texto" alignment="CENTER_RIGHT" maxHeight="18.0" maxWidth="43.0" stylesheets="@../css/inicioSesion.css" text="Usuario:" VBox.vgrow="ALWAYS">
+                              <Label id="texto" alignment="CENTER_RIGHT" maxHeight="18.0" maxWidth="43.0" stylesheets="@../css/Styles.css" text="Usuario:" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="3.0" top="30.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label id="texto" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="70.0" stylesheets="@../css/inicioSesion.css" text="Contraseña:" VBox.vgrow="ALWAYS">
+                              <Label id="texto" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="70.0" stylesheets="@../css/Styles.css" text="Contraseña:" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="3.0" top="50.0" />
                                  </VBox.margin>
@@ -103,12 +104,12 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <children>
-                              <TextField fx:id="User" maxHeight="25.6" maxWidth="300.0" VBox.vgrow="ALWAYS">
+                              <TextField fx:id="User" maxHeight="25.6" maxWidth="300.0" text="Pillina" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="20.0" top="25.0" />
                                  </VBox.margin>
                               </TextField>
-                              <PasswordField fx:id="Password" maxHeight="25.6" maxWidth="300.0" VBox.vgrow="ALWAYS">
+                              <PasswordField fx:id="Password" maxHeight="25.6" maxWidth="300.0" text="18Del091974!" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="20.0" top="45.0" />
                                  </VBox.margin>
@@ -118,13 +119,13 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Text>
-                              <HBox prefHeight="3.0" prefWidth="184.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="3.0" prefWidth="184.0">
                                  <children>
                                     <Text id="texto" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes cuenta?" />
-                                    <Label id="Registro" onMouseClicked="#irRegistro" stylesheets="@../css/inicioSesion.css" text="Registrarse" underline="true" />
+                                    <Hyperlink id="acText" onMouseClicked="#irRegistro" stylesheets="@../css/Styles.css" text="Registrarse" underline="true" />
                                  </children>
                               </HBox>
-                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pulsadoIniciar" prefHeight="30.0" prefWidth="68.0" text="Iniciar">
+                              <Button id="botonAc" fx:id="inicio" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#pulsadoIniciar" prefHeight="30.0" prefWidth="68.0" stylesheets="@../css/Styles.css" text="Iniciar">
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
