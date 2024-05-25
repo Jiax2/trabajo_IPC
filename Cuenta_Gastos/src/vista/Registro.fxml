@@ -110,21 +110,21 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(*No puede contener espacios*)">
+                        <Label id="texto" stylesheets="@../css/registro.css" text="(*No puede contener espacios*)">
                            <font>
                               <Font size="10.0" />
                            </font>
-                        </Text>
+                        </Label>
                         <PasswordField fx:id="pass1" promptText="Entre 8-20 carácteres">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </PasswordField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(*Tiene que contener un dígito, una minúscula, mayúscula y un caracter especial*)">
+                        <Label id="texto" stylesheets="@../css/registro.css" text="(*Tiene que contener un dígito, una minúscula, mayúscula y un caracter especial*)">
                            <font>
                               <Font size="10.0" />
                            </font>
-                        </Text>
+                        </Label>
                         <PasswordField fx:id="pass2">
                            <VBox.margin>
                               <Insets />
