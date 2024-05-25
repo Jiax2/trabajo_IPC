@@ -122,7 +122,7 @@
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="7.0" />
                                  </GridPane.margin></Button>
-                              <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="221.0" prefWidth="522.0" GridPane.rowIndex="2">
+                              <TableView fx:id="tablaMes" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="221.0" prefWidth="522.0" GridPane.rowIndex="2">
                                 <columns>
                                     <TableColumn prefWidth="168.0" text="Nombre" />
                                   <TableColumn prefWidth="168.0" text="Cantidad" />
@@ -157,7 +157,7 @@
                                     <Insets bottom="10.0" top="10.0" />
                                  </GridPane.margin>
                               </Text>
-                              <BarChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="383.0" prefWidth="522.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                              <BarChart fx:id="grafica" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="383.0" prefWidth="522.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                 <xAxis>
                                   <CategoryAxis id="texto" side="BOTTOM" stylesheets="@../css/Styles.css" tickLabelFill="WHITE" />
                                 </xAxis>
@@ -207,7 +207,7 @@
                                     <Font size="28.0" />
                                  </font>
                               </Text>
-                              <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+                              <TableView fx:id="tablaTot" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                                  <columns>
                                     <TableColumn fx:id="colNombre" prefWidth="106.4000244140625" text="Nombre" />
                                     <TableColumn fx:id="colCantidad" prefWidth="108.79998779296875" text="Cantidad" />

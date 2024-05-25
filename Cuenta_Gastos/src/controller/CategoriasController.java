@@ -96,7 +96,8 @@ public class CategoriasController implements Initializable {
     }
 
     @FXML
-    private void deleteCategoria(ActionEvent event) throws IOException {
-       
+    private void deleteCategoria(ActionEvent event) throws IOException, AcountDAOException {
+            Category selectedCategory = catabla.getSelectionModel().getSelectedItem();
+            cuentas.removeCategory(selectedCategory);
     }
 }

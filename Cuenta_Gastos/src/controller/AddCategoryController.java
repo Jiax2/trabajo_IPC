@@ -34,7 +34,7 @@ import model.Category;
 import model.Acount; 
 import model.AcountDAOException;
 import model.Charge;
-
+import controller.HomeScreenController.*;
 /**
  * FXML Controller class
  *
@@ -51,8 +51,6 @@ public class AddCategoryController implements Initializable {
     @FXML
     private Button add;
     
-    private boolean okPressed = false;
-    
     /**
      * Initializes the controller class.
      */
@@ -61,31 +59,5 @@ public class AddCategoryController implements Initializable {
        add.disableProperty().bind(Bindings.createBooleanBinding(() ->
             catName.getText().isEmpty(),
              catName.textProperty()));
-    }
-
-    @FXML
-    private void cancelarCategoria(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        stage.setTitle("Malgastos");
-    }
-
-    @FXML
-    private void aceptarCategoria(ActionEvent event) throws AcountDAOException, IOException {
-            Acount.getInstance().registerCategory(catName.getText(), catDes.getText());
-            System.out.println("Creada");
-            Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            stage.setTitle("Malgastos");
-    }
-    
-    public boolean isOkPressed(){
-        return okPressed;
     }
 }

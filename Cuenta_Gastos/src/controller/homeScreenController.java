@@ -21,10 +21,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -80,10 +82,21 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private Tab totalTab;
     
-    private ObservableList<Charge> listaGastos = null; 
+    private ObservableList<Charge> listaGastosMes = null; 
+    private List<Charge> datosMes=null;
+    
+    private ObservableList<Charge> listaGastosTot = null; 
+    private List<Charge> datosTot=null;
+    
     Stage stage = this.stage;
     public Acount cuentas;
     public User user;
+    @FXML
+    private TableView<Charge> tablaMes;
+    @FXML
+    private BarChart<?, ?> grafica;
+    @FXML
+    private TableView<Charge> tablaTot;
     //===============================================================
     /**
      * Initializes the controller class.
@@ -97,6 +110,8 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
             //Inicializa la imagen y el texto del usuario 
             uImagen.setImage(user.getImage());
             usuario.setText(user.getNickName());
+            inicializaMes();
+            inicializaTot();
         } catch (AcountDAOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -114,11 +129,18 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     }
     //=============================================================
     //Muestreo de los gastos en la lista
-    ArrayList<Charge> misgastos = new ArrayList<Charge>(); 
-    private void inicializaModelo() throws AcountDAOException, IOException{
+    
+    private void inicializaMes() throws AcountDAOException, IOException{
+        datosMes=cuentas.getUserCharges();
+        listaGastosMes=FXCollections.observableList(datosMes);
+        tablaMes.setItems(listaGastosMes);
         
-        misgastos.add(Acount.getInstance().getUserCharges().get(0));
-        listaGastos =   FXCollections.observableList(misgastos);
+    }
+    
+    private void inicializaTot() throws AcountDAOException, IOException{
+        datosTot=cuentas.getUserCharges();
+        listaGastosTot=FXCollections.observableList(datosTot);
+        tablaTot.setItems(listaGastosTot);
         
     }
     
