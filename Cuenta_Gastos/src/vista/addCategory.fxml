@@ -43,8 +43,8 @@
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
             <TextField fx:id="catName" GridPane.columnIndex="1" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" GridPane.rowIndex="1" />
-            <TextField fx:id="catDes" prefHeight="98.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Text fx:id="errorCategoria" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
+            <TextField fx:id="catDes" alignment="TOP_LEFT" prefHeight="98.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Text fx:id="errorCategoria" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="(*Si la categoria ya existe no se añadirá*)" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
          </children>
       </GridPane>
       <GridPane alignment="CENTER" prefHeight="46.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -63,7 +63,7 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="1">
                <children>
-                  <Button id="botonAc" mnemonicParsing="false" onAction="#aceptarCategoria" text="Aceptar" />
+                  <Button id="botonAc" fx:id="add" mnemonicParsing="false" onAction="#aceptarCategoria" text="Aceptar" />
                </children>
             </VBox>
          </children>
