@@ -68,7 +68,7 @@ public class RegistroController implements Initializable {
      */
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
     public Acount cuentas;
-    public Image userImagen=null;
+    private Image userImagen=null;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

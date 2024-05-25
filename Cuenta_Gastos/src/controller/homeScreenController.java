@@ -70,7 +70,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     private GridPane pantallaTotal;
     @FXML
     private Button buttonAdd;
-    private ImageView imagen;
     @FXML
     private Label usuario;
     @FXML
@@ -81,6 +80,12 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     private Tab anualTab;
     @FXML
     private Tab totalTab;
+     @FXML
+    private TableView<Charge> tablaMes;
+    @FXML
+    private BarChart<?, ?> grafica;
+    @FXML
+    private TableView<Charge> tablaTot;
     
     private ObservableList<Charge> listaGastosMes = null; 
     private List<Charge> datosMes=null;
@@ -91,12 +96,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     Stage stage = this.stage;
     public Acount cuentas;
     public User user;
-    @FXML
-    private TableView<Charge> tablaMes;
-    @FXML
-    private BarChart<?, ?> grafica;
-    @FXML
-    private TableView<Charge> tablaTot;
     //===============================================================
     /**
      * Initializes the controller class.
@@ -191,6 +190,7 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/cuenta.fxml")); 
         Parent root = loader.load();
         cambio.getChildren().add(root);
+        
     }
     
 //    @FXML
