@@ -27,6 +27,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Category;
 import model.Acount; 
@@ -44,6 +45,8 @@ public class AddCategoryController implements Initializable {
     private TextField catName;
     @FXML
     private TextField catDes;
+    @FXML
+    private Text errorCategoria;
     
     /**
      * Initializes the controller class.

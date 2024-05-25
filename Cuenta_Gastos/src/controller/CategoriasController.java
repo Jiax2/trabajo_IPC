@@ -47,8 +47,6 @@ public class CategoriasController implements Initializable {
     @FXML
     private Button catDel;
     
-    @FXML
-    private BorderPane pantallaCategorias;
 
     /**
      * Initializes the controller class.
