@@ -15,9 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -27,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -63,7 +67,7 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private TableColumn<Charge, String> colNombre;
     @FXML
-    private TableColumn<Charge, Category> colCategoria;
+    private TableColumn<Charge, String> colCategoria;
     @FXML
     private Button deleteGasto;
     @FXML
@@ -96,6 +100,8 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     Stage stage = this.stage;
     public Acount cuentas;
     public User user;
+    @FXML
+    private TableColumn<?, ?> colInfo;
     //===============================================================
     /**
      * Initializes the controller class.
@@ -116,6 +122,7 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         } catch (IOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }    
     
     //Botones de añadir y eliminar gastos
@@ -138,9 +145,17 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     
     private void inicializaTot() throws AcountDAOException, IOException{
         datosTot=cuentas.getUserCharges();
-        listaGastosTot=FXCollections.observableList(datosTot);
+
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colCantidad.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        colCategoria.setCellValueFactory(cellData -> {
+                Category category = cellData.getValue().getCategory();
+                return new SimpleObjectProperty(category != null ? category.getName() : "Sin categoría");
+            });
+        colFecha.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colInfo.setCellValueFactory(new PropertyValueFactory<>("description"));
+         listaGastosTot=FXCollections.observableList(datosTot);
         tablaTot.setItems(listaGastosTot);
-        
     }
     
     //getter del gasto 
@@ -211,4 +226,54 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         stage.setTitle("Iniciar sesión");
         
     }
+    public void setupChargeTable(TableView<Charge> tableView, TableColumn<Charge, String> nameColumn, TableColumn<Charge, String> categoryColumn, TableColumn<Charge, LocalDate> dateColumn, ObservableList<Charge> charges) {
+        // Asigna la lista observable a la tabla
+        tableView.setItems(charges);
+
+        // Asigna las propiedades de Charge a cada columna
+        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
+        categoryColumn.setCellValueFactory(cellData -> {
+            Charge charge = cellData.getValue();
+            Category category = charge.getCategory();
+            if (category != null) {
+                return new SimpleStringProperty(category.getName());
+            } else {
+                return new SimpleStringProperty("");
+            }
+        });
+        dateColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDate()));
+    }
+
+    @FXML
+    private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException {
+        Charge selectedCharge = tablaTot.getSelectionModel().getSelectedItem();
+        Acount.getInstance().removeCharge(selectedCharge);
+        System.out.println("eliminado");
+//        try {
+//            Acount acount = Acount.getInstance();
+//           listaGastosTot.addAll(acount.getUserCharges());
+//        } catch (IOException | AcountDAOException e) {
+//        }
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+        gastos.getScene().setRoot(root);
+        changeTotal(event);
+    }
+
+    @FXML
+    private void changeMensual(Event event) {
+        mensualTab.getOnSelectionChanged(); 
+    }
+
+    @FXML
+    private void changeAnual(Event event) {
+        anualTab.getOnSelectionChanged(); 
+    }
+
+    @FXML
+    private void changeTotal(Event event) {
+        anualTab.getOnSelectionChanged();
+    }
+    
+    
+    
 }

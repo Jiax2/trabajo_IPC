@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
@@ -21,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane id="fondo" stylesheets="@../css/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.inicioSesionController">
+<GridPane id="fondo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.inicioSesionController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -29,9 +30,9 @@
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <VBox GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
-            <MenuBar VBox.vgrow="ALWAYS">
+            <MenuBar styleClass="upBack" VBox.vgrow="ALWAYS">
               <menus>
                 <Menu mnemonicParsing="false" text="Ayuda">
                   <items>
@@ -44,7 +45,7 @@
             </MenuBar>
             <HBox id="fondo" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/Styles.css">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="198.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="242.0" styleClass="back" HBox.hgrow="ALWAYS">
                      <children>
                         <ImageView fitHeight="212.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                            <image>
@@ -54,9 +55,9 @@
                               <Insets top="40.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Label id="texto" stylesheets="@../css/Styles.css" text="MalGastos">
+                        <Label id="texto" stylesheets="@../css/Styles.css" text="MalGastos" textFill="#fee9ce">
                            <font>
-                              <Font name="System Bold Italic" size="22.0" />
+                              <Font name="Verdana Bold" size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="45.0" />
@@ -64,8 +65,8 @@
                         </Label>
                      </children>
                   </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="ALWAYS" />
-                  <GridPane alignment="CENTER_RIGHT" prefHeight="400.0" prefWidth="284.0" HBox.hgrow="ALWAYS">
+                  <Separator orientation="VERTICAL" prefHeight="200.0" styleClass="upBack" HBox.hgrow="ALWAYS" />
+                  <GridPane alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="284.0" styleClass="back" HBox.hgrow="ALWAYS">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" />
                         <ColumnConstraints hgrow="SOMETIMES" />
@@ -76,40 +77,40 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <VBox alignment="CENTER" GridPane.columnSpan="2">
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="2">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                            <children>
-                              <Text id="texto" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio sesión" textAlignment="CENTER" wrappingWidth="191.71435546875">
+                              <Text id="texto" fill="#fee9ce" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Inicio sesión" textAlignment="CENTER" wrappingWidth="191.71435546875">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
                               </Text>
                            </children>
                         </VBox>
-                        <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                        <VBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <children>
-                              <Label id="texto" alignment="CENTER_RIGHT" maxHeight="18.0" maxWidth="43.0" stylesheets="@../css/Styles.css" text="Usuario:" VBox.vgrow="ALWAYS">
+                              <Label alignment="CENTER_RIGHT" maxHeight="18.0" maxWidth="43.0" styleClass="text" stylesheets="@../css/Styles.css" text="Usuario:" textFill="#fee9ce" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="3.0" top="30.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label id="texto" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="70.0" stylesheets="@../css/Styles.css" text="Contraseña:" VBox.vgrow="ALWAYS">
+                              <Label id="texto" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="70.0" styleClass="text" stylesheets="@../css/Styles.css" text="Contraseña:" textFill="#fee9ce" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="3.0" top="50.0" />
                                  </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <children>
-                              <TextField fx:id="User" maxHeight="25.6" maxWidth="300.0" text="Pillina" VBox.vgrow="ALWAYS">
+                              <TextField fx:id="User" maxHeight="25.6" maxWidth="300.0" styleClass="filling" text="Pillina" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="20.0" top="25.0" />
                                  </VBox.margin>
                               </TextField>
-                              <PasswordField fx:id="Password" maxHeight="25.6" maxWidth="300.0" text="18Del091974!" VBox.vgrow="ALWAYS">
+                              <PasswordField fx:id="Password" maxHeight="25.6" maxWidth="300.0" styleClass="filling" text="18Del091974!" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="20.0" top="45.0" />
                                  </VBox.margin>
@@ -121,17 +122,21 @@
                               </Text>
                               <HBox alignment="CENTER_LEFT" prefHeight="3.0" prefWidth="184.0">
                                  <children>
-                                    <Text id="texto" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes cuenta?" />
+                                    <Text id="texto" fill="#fee9ce" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes cuenta?" />
                                     <Hyperlink id="acText" onMouseClicked="#irRegistro" stylesheets="@../css/Styles.css" text="Registrarse" underline="true" />
                                  </children>
                               </HBox>
-                              <Button id="botonAc" fx:id="inicio" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#pulsadoIniciar" prefHeight="30.0" prefWidth="68.0" stylesheets="@../css/Styles.css" text="Iniciar">
+                              <Button fx:id="inicio" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#pulsadoIniciar" prefHeight="30.0" prefWidth="68.0" stylesheets="@../css/Styles.css" text="Iniciar">
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
                                  <font>
                                     <Font size="13.0" />
                                  </font>
+                                 <styleClass>
+                                    <String fx:value="inicio" />
+                                    <String fx:value="filling" />
+                                 </styleClass>
                               </Button>
                            </children>
                         </VBox>
