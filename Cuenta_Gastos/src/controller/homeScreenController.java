@@ -207,14 +207,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         cambio.getChildren().add(root);
         
     }
-    
-//    @FXML
-//    public void addCategoria(ActionEvent event) throws IOException{
-//        cambio.getChildren().clear();
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/addCategory.fxml")); 
-//        Parent root = loader.load();
-//        cambio.getChildren().add(root);
-//    }
 
     @FXML
     private void exit(ActionEvent event) throws IOException {

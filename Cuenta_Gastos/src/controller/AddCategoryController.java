@@ -60,4 +60,26 @@ public class AddCategoryController implements Initializable {
             catName.getText().isEmpty(),
              catName.textProperty()));
     }
+    
+    @FXML
+    private void cancelarCategoria(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Malgastos");
+    }
+
+    @FXML
+    private void aceptarCategoria(ActionEvent event) throws AcountDAOException, IOException {
+            Acount.getInstance().registerCategory(catName.getText(), catDes.getText());
+            System.out.println("Creada");
+            Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            stage.setTitle("Malgastos");
+    }
 }

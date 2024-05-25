@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,6 +32,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafxmlapplication.JavaFXMLApplication;
 import model.Acount;
@@ -63,7 +66,7 @@ public class CategoriasController implements Initializable {
     private ObservableList<Category> categorias = null;
     private List<Category> datos=null;
     public Acount cuentas;
-    public User user;
+    
     /**
      * Initializes the controller class.
      */
@@ -71,7 +74,6 @@ public class CategoriasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try{
             cuentas=Acount.getInstance();
-            user=cuentas.getLoggedUser(); 
             datos=cuentas.getUserCategories();
         } catch (AcountDAOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,7 +81,10 @@ public class CategoriasController implements Initializable {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-         
+        taylor.setCellValueFactory(new PropertyValueFactory<>("name"));
+        swift.setCellValueFactory(new PropertyValueFactory<>("description"));
+        
+        //Obtener categorias
         categorias=FXCollections.observableList(datos);
         catabla.setItems(categorias);
         
@@ -100,4 +105,5 @@ public class CategoriasController implements Initializable {
             Category selectedCategory = catabla.getSelectionModel().getSelectedItem();
             cuentas.removeCategory(selectedCategory);
     }
+    
 }
