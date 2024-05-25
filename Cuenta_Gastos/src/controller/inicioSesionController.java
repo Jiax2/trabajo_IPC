@@ -62,7 +62,7 @@ public class inicioSesionController implements Initializable {
     @FXML
     private void pulsadoIniciar(ActionEvent event) throws IOException, AcountDAOException {
         if (Acount.getInstance().logInUserByCredentials(User.getText(), Password.getText())==false){
-            errCon.setText("No existe el usuario");
+            errCon.setText("Usuario o contraseña no son correctos");
         } else {
             Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

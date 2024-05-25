@@ -94,8 +94,8 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     public void initialize(URL url, ResourceBundle rb) {
         //Carga el usuario y el acount
         try{
-            cuentas=cuentas.getInstance();
-            this.user=cuentas.getLoggedUser();
+            cuentas=Acount.getInstance();
+            user=cuentas.getLoggedUser();
             //Inicializa la imagen y el texto del usuario 
             uImagen.setImage(user.getImage());
             usuario.setText(user.getNickName());
@@ -194,6 +194,4 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         stage.setTitle("Iniciar sesión");
         
     }
-    //===============================================================================================
-    
 }

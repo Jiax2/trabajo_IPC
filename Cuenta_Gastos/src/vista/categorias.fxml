@@ -19,7 +19,7 @@
       <RowConstraints maxHeight="175.99999389648437" minHeight="8.799987411499018" prefHeight="53.80000190734863" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="355.20001258850095" minHeight="10.0" prefHeight="46.59999809265136" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="482.3999938964844" minHeight="10.0" prefHeight="250.0" vgrow="ALWAYS" />
-   </rowConstraints>
+</rowConstraints>
    <children>
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorias" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <font>
@@ -32,10 +32,10 @@
             <Button id="botonAc" fx:id="catDel" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteCategoria" stylesheets="@../css/Styles.css" text="Eliminar Categoría" />
         </items>
       </ToolBar>
-      <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="186.0" prefWidth="514.0" GridPane.rowIndex="2">
+      <TableView fx:id="catabla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="186.0" prefWidth="514.0" GridPane.rowIndex="2">
         <columns>
-          <TableColumn prefWidth="227.20001828670502" text="Nombre" />
-          <TableColumn prefWidth="372.7998962402344" text="Descripcion" />
+          <TableColumn fx:id="taylor" prefWidth="227.20001828670502" text="Nombre" />
+          <TableColumn fx:id="swift" prefWidth="372.7998962402344" text="Descripcion" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

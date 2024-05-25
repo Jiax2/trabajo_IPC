@@ -116,13 +116,15 @@ public class RegistroController implements Initializable {
             //Registrar el usuario
             cuentas.registerUser(nombre.getText(), apellido.getText(), mail.getText(),
                     usuario.getText(), pass1.getText(), userImagen, LocalDate.now());
-            //Cambia a homeScreen
-            Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            stage.setTitle("MalGastos");   
+            //Inicia usuario y cambia a homeScreen
+            if (Acount.getInstance().logInUserByCredentials(usuario.getText(), pass1.getText())==true){
+                Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                stage.setTitle("MalGastos");   
+            }
         }
     }
     

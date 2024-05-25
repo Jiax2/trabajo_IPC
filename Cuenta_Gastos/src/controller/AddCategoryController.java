@@ -51,14 +51,16 @@ public class AddCategoryController implements Initializable {
     @FXML
     private Button add;
     
+    private boolean okPressed = false;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        add.disableProperty().bind(Bindings.createBooleanBinding(() ->
-                catName.getText().isEmpty(),
-                catName.textProperty()));
+            catName.getText().isEmpty(),
+             catName.textProperty()));
     }
 
     @FXML
@@ -83,4 +85,7 @@ public class AddCategoryController implements Initializable {
             stage.setTitle("Malgastos");
     }
     
+    public boolean isOkPressed(){
+        return okPressed;
+    }
 }
