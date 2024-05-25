@@ -57,7 +57,6 @@ public class AddGastosController implements Initializable {
     private TextField unidades;
     @FXML
     private DatePicker dateGasto;
-    private ImageView imagenView;
     
     public Image gastoImagen=null; 
     @FXML
@@ -66,6 +65,10 @@ public class AddGastosController implements Initializable {
     private Button cancelarButton;
     @FXML
     private Button aceptarButton;
+    @FXML
+    private Text mensajeError;
+    @FXML
+    private ImageView ImagenView;
     /**
      * Initializes the controller class.
      */
@@ -80,6 +83,7 @@ public class AddGastosController implements Initializable {
         }
     }    
     
+    @FXML
     private void imagen(ActionEvent event) throws IOException{
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar Imagen");
@@ -97,7 +101,7 @@ public class AddGastosController implements Initializable {
                 gastoImagen = new Image(selectedFile.toURI().toString());
 
                 // Establecer la imagen en el ImageView correspondiente
-                imagenView.setImage(gastoImagen); 
+                ImagenView.setImage(gastoImagen); 
             } catch (Exception e) {
                 // Manejar cualquier excepción que pueda ocurrir al cargar la imagen
                 e.printStackTrace();
