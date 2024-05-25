@@ -194,7 +194,7 @@
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                  <Button id="botonAc" fx:id="buttonAdd" mnemonicParsing="false" onAction="#actionAddGasto" stylesheets="@../css/Styles.css" text="Añade gasto">
+                                  <Button id="botonAc" fx:id="buttonAdd" mnemonicParsing="false" onAction="#actionAddGasto" stylesheets="@../css/Styles.css" text="Añadir gasto">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
