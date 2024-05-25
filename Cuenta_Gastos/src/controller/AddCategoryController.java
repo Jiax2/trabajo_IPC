@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,18 +47,14 @@ public class AddCategoryController implements Initializable {
     private TextField catDes;
     @FXML
     private Text errorCategoria;
-    @FXML
-    private Button add;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       add.disableProperty().bind(Bindings.createBooleanBinding(() ->
-                catName.getText().isEmpty(),
-                catName.textProperty()));
-    }
+       
+    }    
 
     @FXML
     private void cancelarCategoria(ActionEvent event) throws IOException {
@@ -68,19 +63,13 @@ public class AddCategoryController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        stage.setTitle("Malgastos");
+        stage.setTitle("Iniciar sesión");
     }
 
     @FXML
     private void aceptarCategoria(ActionEvent event) throws AcountDAOException, IOException {
-            Acount.getInstance().registerCategory(catName.getText(), catDes.getText());
-            System.out.println("Creada");
-            Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            stage.setTitle("Malgastos");
+        Acount.getInstance().registerCategory(catName.getText(), catDes.getText());
+        System.out.println("Creada");
     }
     
 }

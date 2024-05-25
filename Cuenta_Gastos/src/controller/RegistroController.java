@@ -72,17 +72,16 @@ public class RegistroController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Carga Acount
         try {
             cuentas = Acount.getInstance();
             
         } catch (AcountDAOException | IOException ex) {
             Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //Carga Imagen
+        
         userImagen = defaultImagen();
         imagen.setImage(userImagen);
-        //Desahabilita el boton Registrarse
+        
         registro.disableProperty().bind(Bindings.createBooleanBinding(() ->
                 nombre.getText().isEmpty() ||
                 apellido.getText().isEmpty() ||
@@ -202,8 +201,7 @@ public class RegistroController implements Initializable {
         return true;
     }
     
-    //Carga imagen por defecto
-     private Image defaultImagen(){
+     private Image defaultImagen() {
         InputStream input = getClass().getResourceAsStream("/images/default.png");
         return new Image(input);
     }

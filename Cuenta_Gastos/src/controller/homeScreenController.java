@@ -92,11 +92,10 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
  */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Carga el usuario y el acount
+        //Carga el usuario
         try{
             cuentas=cuentas.getInstance();
             this.user=cuentas.getLoggedUser();
-            //Inicializa la imagen y el texto del usuario 
             uImagen.setImage(user.getImage());
             usuario.setText(user.getNickName());
         } catch (AcountDAOException ex) {
