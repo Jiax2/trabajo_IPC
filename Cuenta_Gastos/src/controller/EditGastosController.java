@@ -69,13 +69,13 @@ public class EditGastosController implements Initializable {
     @FXML
     private Button aceptarButton;
     @FXML
-    private Text mensajeError;
-    @FXML
     private ImageView ImagenView;
     
     private Acount cuentas;
     private Image imagen;
     private Charge gasto;
+    @FXML
+    private Text error;
     
     /**
      * Initializes the controller class.
@@ -169,21 +169,40 @@ public class EditGastosController implements Initializable {
     
     @FXML
     private void aceptarGasto(ActionEvent event) throws AcountDAOException, IOException {
-        //Añadir valores
-        Category cat = findCategory(); 
-        String name = nameGasto.getText(); 
-        String descripcion = descripGasto.getText(); 
-        Double cost = parseDouble(cantidad.getText());
-        LocalDate date = dateGasto.getValue(); 
-        //Agrega gastos
-        Acount.getInstance().registerCharge(name, descripcion,cost , parseInt(unidades.getText()), gastoImagen, date, cat);
-        //Salto a HomeScreen
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        stage.setTitle("Malgastos");
+        while(Comprobar()){
+            //Añadir valores
+            Category cat = findCategory(); 
+            String name = nameGasto.getText(); 
+            String descripcion = descripGasto.getText(); 
+            Double cost = parseDouble(cantidad.getText());
+            LocalDate date = dateGasto.getValue(); 
+            //Agrega gastos
+            Acount.getInstance().registerCharge(name, descripcion,cost , parseInt(unidades.getText()), gastoImagen, date, cat);
+            //Salto a HomeScreen
+            Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            stage.setTitle("Malgastos");
+        }
+    }
+    
+    private boolean Comprobar() throws AcountDAOException, IOException{
+        String cantidadText = cantidad.getText();
+        String unidadText = unidades.getText();
+
+        //Comprabar si cantidad son números o solo hay un punto separador
+        if(!cantidadText.matches(".*\\d.*") || !cantidadText.matches("\\d+|\\d*\\.\\d+")){
+            error.setText("La cantidad tiene que ser números");
+            return false;
+        }
+        //Comprobar si unidades solo son números
+        if(!unidadText.matches(".*\\d.*")){
+            error.setText("La unidad tiene que ser números");
+            return false;
+        }
+        return true;
     }
     //Codigo comprobacion para asegurarse de que los valores introducidos son válidos: 
     //cantidad debe ser un valor numerico, solo el campo imagen es opcional, los demás no pueden ser nulos, no puede existir dos categorias del mismo nombre
