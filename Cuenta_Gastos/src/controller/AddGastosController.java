@@ -136,14 +136,21 @@ public class AddGastosController implements Initializable {
     
     @FXML
     private void aceptarGasto(ActionEvent event) throws AcountDAOException, IOException {
+        //Añadir valores
         Category cat = findCategory(); 
         String name = nameGasto.getText(); 
         String descripcion = descripGasto.getText(); 
         Double cost = parseDouble(cantidad.getText());
         LocalDate date = dateGasto.getValue(); 
-        
+        //Agrega gastos
         Acount.getInstance().registerCharge(name, descripcion,cost , parseInt(unidades.getText()), gastoImagen, date, cat);
-        System.out.println("creado");
+        //Salto a HomeScreen
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Malgastos");
     }
     //Codigo comprobacion para asegurarse de que los valores introducidos son válidos: 
     //cantidad debe ser un valor numerico, solo el campo imagen es opcional, los demás no pueden ser nulos, no puede existir dos categorias del mismo nombre

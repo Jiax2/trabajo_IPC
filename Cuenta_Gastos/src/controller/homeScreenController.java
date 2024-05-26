@@ -133,15 +133,20 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     //Muestreo de los gastos en la lista
     
     private void inicializaMes() throws AcountDAOException, IOException{
+        //Carga gastos
         datosMes=cuentas.getUserCharges();
+        //Inicializa columnas
+        
+         //Añade a la tabla
         listaGastosMes=FXCollections.observableList(datosMes);
         tablaMes.setItems(listaGastosMes);
         
     }
     
     private void inicializaTot() throws AcountDAOException, IOException{
+        //Carga gastos
         datosTot=cuentas.getUserCharges();
-
+        //Inicializa columnas
         colNombre.setCellValueFactory(new PropertyValueFactory<>("name"));
         colCantidad.setCellValueFactory(new PropertyValueFactory<>("cost"));
         colCategoria.setCellValueFactory(cellData -> {
@@ -150,7 +155,8 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
             });
         colFecha.setCellValueFactory(new PropertyValueFactory<>("date"));
         colInfo.setCellValueFactory(new PropertyValueFactory<>("description"));
-         listaGastosTot=FXCollections.observableList(datosTot);
+        //Añade a la tabla
+        listaGastosTot=FXCollections.observableList(datosTot);
         tablaTot.setItems(listaGastosTot);
     }
     
