@@ -4,9 +4,6 @@
  */
 package controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -14,14 +11,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,18 +26,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
 import javafxmlapplication.JavaFXMLApplication;
 import model.Acount;
 import model.AcountDAOException;
 import model.Category;
-import model.Charge;
-import model.User;
 /**
  * FXML Controller class
  *
@@ -69,7 +58,7 @@ public class CategoriasController implements Initializable {
 
     private ObservableList<Category> categorias = null;
     private List<Category> datos=null;
-    public Acount cuentas;
+    private Acount cuentas;
     
     /**
      * Initializes the controller class.
@@ -85,7 +74,7 @@ public class CategoriasController implements Initializable {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
+        catDel.disableProperty().bind(Bindings.equal(catabla.getSelectionModel().selectedIndexProperty(), -1));
         
     }    
     
@@ -109,7 +98,7 @@ public class CategoriasController implements Initializable {
         stage.show();
         stage.setTitle("Añadir Categoria"); 
     }
-
+    
     @FXML
     private void deleteCategoria(ActionEvent event) throws IOException, AcountDAOException {
         Category selectedCategory = catabla.getSelectionModel().getSelectedItem();

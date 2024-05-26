@@ -102,7 +102,7 @@
                   <Text fx:id="errMen" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </VBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Foto de Perfil" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.valignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Foto de Perfil" textAlignment="CENTER" translateY="-5.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

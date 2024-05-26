@@ -19,10 +19,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
@@ -43,7 +41,8 @@ public class inicioSesionController implements Initializable {
     private Text errCon;
     @FXML
     private Button inicio;
-
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -68,6 +67,7 @@ public class inicioSesionController implements Initializable {
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setResizable(true);
             stage.show();
             stage.setTitle("MalGastos");
         }
@@ -79,6 +79,7 @@ public class inicioSesionController implements Initializable {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
         stage.setTitle("Registrarse");
     }

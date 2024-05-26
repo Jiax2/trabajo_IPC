@@ -4,15 +4,9 @@
  */
 package controller;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import static java.lang.Double.parseDouble;
-import static java.lang.Integer.parseInt;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,17 +18,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Category;
 import model.Acount; 
 import model.AcountDAOException;
-import model.Charge;
-import controller.HomeScreenController.*;
 /**
  * FXML Controller class
  *
@@ -46,8 +33,6 @@ public class AddCategoryController implements Initializable {
     private TextField catName;
     @FXML
     private TextField catDes;
-    @FXML
-    private Text errorCategoria;
     @FXML
     private Button add;
     
@@ -73,13 +58,20 @@ public class AddCategoryController implements Initializable {
 
     @FXML
     private void aceptarCategoria(ActionEvent event) throws AcountDAOException, IOException {
+         try{    
             Acount.getInstance().registerCategory(catName.getText(), catDes.getText());
-            System.out.println("Creada");
             Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
             stage.setTitle("Malgastos");
+            }catch( model.AcountDAOException a){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error en la creación de categoría");
+                alert.setHeaderText("Nombre de la categoría ya en uso");
+                alert.setContentText("Cambia o edita el nombre de la categoría");
+                alert.showAndWait();
+            }
     }
 }

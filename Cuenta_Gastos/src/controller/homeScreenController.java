@@ -6,7 +6,6 @@ import java.text.DateFormatSymbols;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -14,13 +13,13 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,26 +29,19 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
@@ -126,10 +118,13 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     Stage stage = this.stage;
     public Acount cuentas;
     public User user;
+    private Charge cargo;
     @FXML
     private Button buttonMod;
     @FXML
     private ChoiceBox<String> choiceBox = new ChoiceBox<>();
+    @FXML
+    private Button imprimirBut;
     //===============================================================
     /**
      * Initializes the controller class.
@@ -151,6 +146,8 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         } catch (IOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        buttonMod.disableProperty().bind(Bindings.equal(tablaTot.getSelectionModel().selectedIndexProperty(), -1));
+        deleteGasto.disableProperty().bind(Bindings.equal(tablaTot.getSelectionModel().selectedIndexProperty(), -1));
     }    
     
     //inicializar el choiceBox
@@ -318,6 +315,7 @@ private void updateChartByCategory() {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
         stage.setTitle("Iniciar sesión");
     }
@@ -348,5 +346,26 @@ private void updateChartByCategory() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/EditGastos.fxml")); 
         Parent root = loader.load();
         cambio.getChildren().add(root); 
+        EditGastosController controlGasto = loader.getController();
+        cargo = tablaTot.getSelectionModel().getSelectedItem();
+        controlGasto.initCargo(cargo);
+        if(controlGasto.isOKPressed()){
+             int indice = listaGastosTot.indexOf(cargo);
+             Charge c = controlGasto.getGasto();
+             listaGastosTot.set(indice, c);
+        }
+    }
+    
+    @FXML
+    private void imprimir(ActionEvent event)throws IOException {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("Fatal error");
+        alert.setContentText("No se ha podido imprimir sus gastos");
+        ButtonType buttonTypeCancel = new ButtonType("Aceptar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(buttonTypeCancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent()){
+        }else{
+        }
     }
 }

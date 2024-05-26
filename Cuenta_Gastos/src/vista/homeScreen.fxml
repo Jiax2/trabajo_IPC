@@ -243,7 +243,7 @@
                                   <NumberAxis id="texto" fx:id="datos" side="LEFT" stylesheets="@../css/Styles.css" tickLabelFill="#100000" />
                                 </yAxis>
                               </BarChart>
-                              <Button id="botonAc" mnemonicParsing="false" stylesheets="@../css/Styles.css" text="Imprime reporte" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                              <Button id="botonAc" fx:id="imprimirBut" mnemonicParsing="false" onAction="#imprimir" stylesheets="@../css/Styles.css" text="Imprime reporte" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                               <ChoiceBox fx:id="choiceBox" prefHeight="26.0" prefWidth="103.0" styleClass="menuItem" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="5.0" />

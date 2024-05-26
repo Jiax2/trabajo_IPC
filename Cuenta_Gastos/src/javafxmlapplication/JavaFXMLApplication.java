@@ -5,11 +5,6 @@
  */
 package javafxmlapplication;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,8 +24,10 @@ public class JavaFXMLApplication extends Application {
         Parent root = loader.load();  
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
         stage.setTitle("MalGastos");
+        
     }
     
     public void cambiarInicio(){

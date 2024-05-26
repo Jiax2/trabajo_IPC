@@ -111,12 +111,12 @@
                         </VBox>
                         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <children>
-                              <TextField fx:id="User" maxHeight="26.0" maxWidth="300.0" prefHeight="26.0" prefWidth="169.0" text="Pillina" VBox.vgrow="ALWAYS">
+                              <TextField fx:id="User" maxHeight="26.0" maxWidth="300.0" prefHeight="26.0" prefWidth="169.0" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="20.0" top="25.0" />
                                  </VBox.margin>
                               </TextField>
-                              <PasswordField fx:id="Password" maxHeight="26.0" maxWidth="300.0" minHeight="0.0" minWidth="0.0" prefHeight="26.0" prefWidth="0.0" text="18Del091974!" VBox.vgrow="ALWAYS">
+                              <PasswordField fx:id="Password" maxHeight="26.0" maxWidth="300.0" minHeight="0.0" minWidth="0.0" prefHeight="26.0" prefWidth="0.0" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets right="20.0" top="45.0" />
                                  </VBox.margin>

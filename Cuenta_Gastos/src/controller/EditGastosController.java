@@ -5,7 +5,6 @@
 package controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
@@ -24,8 +23,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -39,7 +36,6 @@ import model.Category;
 import model.Acount; 
 import model.AcountDAOException;
 import model.Charge;
-import model.User;
 
 /**
  * FXML Controller class
@@ -60,8 +56,6 @@ public class EditGastosController implements Initializable {
     private TextField unidades;
     @FXML
     private DatePicker dateGasto;
-    
-    public Image gastoImagen=null; 
     @FXML
     private Button imagenGasto;
     @FXML
@@ -70,12 +64,13 @@ public class EditGastosController implements Initializable {
     private Button aceptarButton;
     @FXML
     private ImageView ImagenView;
-    
-    private Acount cuentas;
-    private Image imagen;
-    private Charge gasto;
     @FXML
     private Text error;
+    
+    private Acount cuentas;
+    private Charge gasto;
+    public Image gastoImagen; 
+    private boolean pulsadoOK = false;
     
     /**
      * Initializes the controller class.
@@ -84,12 +79,6 @@ public class EditGastosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             cuentas=Acount.getInstance();
-            gasto=cuentas.getUserCharges().get();
-            nameGasto.setText(gasto.getName());
-            descripGasto.setText(gasto.getDescription());
-            cantidad.setText(Double.toString(gasto.getCost()));
-            unidades.setText(Integer.toString(gasto.getUnits()));
-            imagen=gasto.getImageScan();
             listacategoria();
         } catch (AcountDAOException ex) {
             Logger.getLogger(EditGastosController.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,7 +90,6 @@ public class EditGastosController implements Initializable {
         pickerCategorias.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             pickerCategoriasEmpty.set(newVal == null);
         });
-        
         aceptarButton.disableProperty().bind(Bindings.createBooleanBinding(() ->
                 nameGasto.getText().isEmpty() ||
                 unidades.getText().isEmpty() ||
@@ -114,6 +102,26 @@ public class EditGastosController implements Initializable {
                 pickerCategoriasEmpty,
                 dateGasto.valueProperty().isNull()
         ));
+    }
+    
+    public void initCargo(Charge c){
+        gasto = c;
+        nameGasto.setText(c.getName());
+        descripGasto.setText(c.getDescription());
+        cantidad.setText(Double.toString(c.getCost()));
+        unidades.setText(Integer.toString(c.getUnits()));
+        gastoImagen=c.getImageScan();
+        ImagenView.setImage(gastoImagen);
+        dateGasto.setValue(c.getDate());
+        pickerCategorias.getSelectionModel().select(c.getCategory().getName());
+    }
+    
+    public boolean isOKPressed(){
+        return pulsadoOK;
+    }
+    
+    public Charge getGasto(){
+        return gasto;
     }
     
     @FXML
@@ -169,15 +177,25 @@ public class EditGastosController implements Initializable {
     
     @FXML
     private void aceptarGasto(ActionEvent event) throws AcountDAOException, IOException {
-        while(Comprobar()){
+        if(Comprobar()){
             //Añadir valores
             Category cat = findCategory(); 
             String name = nameGasto.getText(); 
             String descripcion = descripGasto.getText(); 
             Double cost = parseDouble(cantidad.getText());
             LocalDate date = dateGasto.getValue(); 
-            //Agrega gastos
-            Acount.getInstance().registerCharge(name, descripcion,cost , parseInt(unidades.getText()), gastoImagen, date, cat);
+            int unit=parseInt(unidades.getText());
+            Image imagen=gastoImagen;
+            
+            gasto.setName(name);
+            gasto.setDescription(descripcion);
+            gasto.setCost(cost);
+            gasto.setUnits(unit);
+            gasto.setDate(date);
+            gasto.setCategory(cat);
+            gasto.setImageScan(imagen);
+            initCargo(gasto);
+            pulsadoOK = true;
             //Salto a HomeScreen
             Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

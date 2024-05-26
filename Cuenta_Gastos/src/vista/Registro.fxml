@@ -146,7 +146,7 @@
                                     <Insets />
                                  </VBox.margin>
                               </PasswordField>
-                              <Label id="texto" stylesheets="@../css/Styles.css" text="(*Tiene que contener un dígito, una minúscula, mayúscula y un caracter especial*)">
+                              <Label id="texto" prefHeight="15.0" prefWidth="400.0" stylesheets="@../css/Styles.css" text="(*Debe tener un dígito, una minúscula, mayúscula y un caracter especial*)">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -212,11 +212,6 @@
                               </Text>
                            </children>
                         </VBox>
-                        <ImageView fitHeight="78.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                           <image>
-                              <Image url="@../images/Denis%20Puto.gif" />
-                           </image>
-                        </ImageView>
                      </children>
                   </GridPane>
                </children>

@@ -5,8 +5,6 @@
 package controller;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -113,7 +111,8 @@ public class RegistroController implements Initializable {
     
     @FXML
     private void pulsadoRegistro(ActionEvent event) throws IOException, AcountDAOException{
-        while(Comprobar()){
+        if(Comprobar()){
+            error.setText("");
             //Registrar el usuario
             cuentas.registerUser(nombre.getText(), apellido.getText(), mail.getText(),
                     usuario.getText(), pass1.getText(), userImagen, LocalDate.now());

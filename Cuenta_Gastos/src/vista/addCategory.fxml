@@ -57,7 +57,6 @@
                   <Insets right="4.0" />
                </GridPane.margin></Text>
             <TextField fx:id="catDes" alignment="TOP_LEFT" prefHeight="98.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Text fx:id="errorCategoria" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="(*Si la categoria ya existe no se añadirá*)" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
          </children>
       </GridPane>
       <GridPane alignment="CENTER" prefHeight="46.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="2">

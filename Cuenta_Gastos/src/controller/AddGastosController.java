@@ -5,13 +5,11 @@
 package controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -25,8 +23,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -39,7 +35,6 @@ import javafx.stage.Stage;
 import model.Category;
 import model.Acount; 
 import model.AcountDAOException;
-import model.Charge;
 
 /**
  * FXML Controller class
@@ -72,6 +67,7 @@ public class AddGastosController implements Initializable {
     private Text error;
     
     private Image gastoImagen; 
+    
     /**
      * Initializes the controller class.
      */
@@ -158,15 +154,17 @@ public class AddGastosController implements Initializable {
     
     @FXML
     private void aceptarGasto(ActionEvent event) throws AcountDAOException, IOException {
-        while(Comprobar()){
+        if(Comprobar()){
+            error.setText("La unidad tiene que ser números");
             //Añadir valores
             Category cat = findCategory(); 
             String name = nameGasto.getText(); 
             String descripcion = descripGasto.getText(); 
             Double cost = parseDouble(cantidad.getText());
             LocalDate date = dateGasto.getValue(); 
+            int unit=parseInt(unidades.getText());
             //Agrega gastos
-            Acount.getInstance().registerCharge(name, descripcion,cost , parseInt(unidades.getText()), gastoImagen, date, cat);
+            Acount.getInstance().registerCharge(name, descripcion,cost , unit, gastoImagen, date, cat);
             //Salto a HomeScreen
             Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -174,9 +172,10 @@ public class AddGastosController implements Initializable {
             stage.setScene(scene);
             stage.show();
             stage.setTitle("Malgastos");
+            
         }
     }
-    
+        
     private boolean Comprobar() throws AcountDAOException, IOException{
         String cantidadText = cantidad.getText();
         String unidadText = unidades.getText();
