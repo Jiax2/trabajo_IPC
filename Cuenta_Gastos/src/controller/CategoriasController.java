@@ -74,12 +74,19 @@ public class CategoriasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try{
             cuentas=Acount.getInstance();
-            datos=cuentas.getUserCategories();
+            inicializaCat();
         } catch (AcountDAOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
+    }    
+    
+    private void inicializaCat()throws AcountDAOException, IOException{
+        datos=cuentas.getUserCategories();
         
         taylor.setCellValueFactory(new PropertyValueFactory<>("name"));
         swift.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -87,9 +94,8 @@ public class CategoriasController implements Initializable {
         //Obtener categorias
         categorias=FXCollections.observableList(datos);
         catabla.setItems(categorias);
-        
-    }    
-
+    }
+    
     @FXML
     private void addCategoria(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/addCategory.fxml"));
@@ -104,6 +110,7 @@ public class CategoriasController implements Initializable {
     private void deleteCategoria(ActionEvent event) throws IOException, AcountDAOException {
             Category selectedCategory = catabla.getSelectionModel().getSelectedItem();
             cuentas.removeCategory(selectedCategory);
+            inicializaCat();
     }
     
 }

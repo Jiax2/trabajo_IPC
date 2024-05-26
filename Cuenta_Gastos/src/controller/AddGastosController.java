@@ -137,12 +137,10 @@ public class AddGastosController implements Initializable {
     @FXML
     private void aceptarGasto(ActionEvent event) throws AcountDAOException, IOException {
         Category cat = findCategory(); 
-//        System.out.println(findCategory().getName());
         String name = nameGasto.getText(); 
         String descripcion = descripGasto.getText(); 
         Double cost = parseDouble(cantidad.getText());
-//       Category c = pickerCategorias.getValue();
-       LocalDate date = dateGasto.getValue(); 
+        LocalDate date = dateGasto.getValue(); 
         
         Acount.getInstance().registerCharge(name, descripcion,cost , parseInt(unidades.getText()), gastoImagen, date, cat);
         System.out.println("creado");

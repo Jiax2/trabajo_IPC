@@ -219,18 +219,12 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException {
         Charge selectedCharge = tablaTot.getSelectionModel().getSelectedItem();
         Acount.getInstance().removeCharge(selectedCharge);
-        System.out.println("eliminado");
         inicializaTot();
         tabPane.getSelectionModel().select(totalTab);
         changeTotal(event);
     }
 
-
     private void changeTotal(Event event) {
       
     }
-    
-    
-    
-    
 }
