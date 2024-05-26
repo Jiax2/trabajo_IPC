@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
@@ -27,7 +28,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -108,9 +112,20 @@ public class CategoriasController implements Initializable {
 
     @FXML
     private void deleteCategoria(ActionEvent event) throws IOException, AcountDAOException {
-            Category selectedCategory = catabla.getSelectionModel().getSelectedItem();
-            cuentas.removeCategory(selectedCategory);
-            inicializaCat();
+        Category selectedCategory = catabla.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Eliminar categoria");
+        alert.setContentText("¿Estas seguro que quieres eliminar esta categoria?");
+        ButtonType buttonTypeAccept = new ButtonType("Aceptar");
+        ButtonType buttonTypeCancel = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(buttonTypeAccept,buttonTypeCancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent()){
+            if (result.get() == buttonTypeAccept){
+                cuentas.removeCategory(selectedCategory);
+                inicializaCat();
+            }else{
+            }
+        }
     }
-    
 }

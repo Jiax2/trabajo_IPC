@@ -127,6 +127,12 @@ public class CuentaController implements Initializable {
                     user.setPassword(pass.getText());
                     user.setEmail(mail.getText());
                     user.setImage(imagen);
+                    Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+                    Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                    stage.setTitle("Malgastos");
                 }else{
                 }
             }

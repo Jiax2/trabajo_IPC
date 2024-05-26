@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -83,7 +84,7 @@ public class EditGastosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             cuentas=Acount.getInstance();
-            gasto=cuentas.getUserCharges().get(g)
+            gasto=cuentas.getUserCharges().get();
             nameGasto.setText(gasto.getName());
             descripGasto.setText(gasto.getDescription());
             cantidad.setText(Double.toString(gasto.getCost()));
@@ -96,16 +97,22 @@ public class EditGastosController implements Initializable {
             Logger.getLogger(EditGastosController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        SimpleBooleanProperty pickerCategoriasEmpty = new SimpleBooleanProperty(true);
+        pickerCategorias.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            pickerCategoriasEmpty.set(newVal == null);
+        });
+        
         aceptarButton.disableProperty().bind(Bindings.createBooleanBinding(() ->
                 nameGasto.getText().isEmpty() ||
                 unidades.getText().isEmpty() ||
-                cantidad.getText().isEmpty(),
-                //dateGasto.getValue().isEqual(null),
+                cantidad.getText().isEmpty() ||
+                pickerCategoriasEmpty.get() ||
+                dateGasto.getValue()==null,
                 nameGasto.textProperty(),
                 unidades.textProperty(),
-                cantidad.textProperty()
-                //dateGasto.DateTimeFormatter().texProperty()
-              
+                cantidad.textProperty(),
+                pickerCategoriasEmpty,
+                dateGasto.valueProperty().isNull()
         ));
     }
     

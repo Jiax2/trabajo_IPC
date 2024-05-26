@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +28,10 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -322,10 +326,22 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException {
         Charge selectedCharge = tablaTot.getSelectionModel().getSelectedItem();
-        Acount.getInstance().removeCharge(selectedCharge);
-        inicializaTot();
-        tabPane.getSelectionModel().select(totalTab);
-        changeTotal(event);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Eliminar gasto");
+        alert.setContentText("¿Estas seguro que quieres eliminar este gasto?");
+        ButtonType buttonTypeAccept = new ButtonType("Aceptar");
+        ButtonType buttonTypeCancel = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(buttonTypeAccept,buttonTypeCancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent()){
+            if (result.get() == buttonTypeAccept){
+                Acount.getInstance().removeCharge(selectedCharge);
+                inicializaTot();
+                tabPane.getSelectionModel().select(totalTab);
+                changeTotal(event);
+            }else{
+            }
+        }
     }
 
     private void changeTotal(Event event) {

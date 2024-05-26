@@ -11,11 +11,13 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,9 +67,9 @@ public class AddGastosController implements Initializable {
     @FXML
     private Button aceptarButton;
     @FXML
-    private Text mensajeError;
-    @FXML
     private ImageView ImagenView;
+    @FXML
+    private Text error;
     
     private Image gastoImagen; 
     /**
@@ -83,16 +85,22 @@ public class AddGastosController implements Initializable {
             Logger.getLogger(AddGastosController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        SimpleBooleanProperty pickerCategoriasEmpty = new SimpleBooleanProperty(true);
+        pickerCategorias.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            pickerCategoriasEmpty.set(newVal == null);
+        });
+        
         aceptarButton.disableProperty().bind(Bindings.createBooleanBinding(() ->
                 nameGasto.getText().isEmpty() ||
                 unidades.getText().isEmpty() ||
-                cantidad.getText().isEmpty(),
-                //dateGasto.getValue().isEqual(null),
+                cantidad.getText().isEmpty() ||
+                pickerCategoriasEmpty.get() ||
+                dateGasto.getValue()==null,
                 nameGasto.textProperty(),
                 unidades.textProperty(),
-                cantidad.textProperty()
-                //dateGasto.DateTimeFormatter().texProperty()
-              
+                cantidad.textProperty(),
+                pickerCategoriasEmpty,
+                dateGasto.valueProperty().isNull()
         ));
     }    
     
@@ -143,28 +151,49 @@ public class AddGastosController implements Initializable {
     }
     @FXML
     private void cancelarGasto(ActionEvent event) throws IOException, AcountDAOException {
+        //Vuelve a HomeScreen
         Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
         cancelarButton.getScene().setRoot(root);
     } 
     
     @FXML
     private void aceptarGasto(ActionEvent event) throws AcountDAOException, IOException {
-        //Añadir valores
-        Category cat = findCategory(); 
-        String name = nameGasto.getText(); 
-        String descripcion = descripGasto.getText(); 
-        Double cost = parseDouble(cantidad.getText());
-        LocalDate date = dateGasto.getValue(); 
-        //Agrega gastos
-        Acount.getInstance().registerCharge(name, descripcion,cost , parseInt(unidades.getText()), gastoImagen, date, cat);
-        //Salto a HomeScreen
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        stage.setTitle("Malgastos");
+        while(Comprobar()){
+            //Añadir valores
+            Category cat = findCategory(); 
+            String name = nameGasto.getText(); 
+            String descripcion = descripGasto.getText(); 
+            Double cost = parseDouble(cantidad.getText());
+            LocalDate date = dateGasto.getValue(); 
+            //Agrega gastos
+            Acount.getInstance().registerCharge(name, descripcion,cost , parseInt(unidades.getText()), gastoImagen, date, cat);
+            //Salto a HomeScreen
+            Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            stage.setTitle("Malgastos");
+        }
     }
+    
+    private boolean Comprobar() throws AcountDAOException, IOException{
+        String cantidadText = cantidad.getText();
+        String unidadText = unidades.getText();
+
+        //Comprabar si cantidad son números o solo hay un punto separador
+        if(!cantidadText.matches(".*\\d.*") || !cantidadText.matches("\\d+|\\d*\\.\\d+")){
+            error.setText("La cantidad tiene que ser números");
+            return false;
+        }
+        //Comprobar si unidades solo son números
+        if(!unidadText.matches(".*\\d.*")){
+            error.setText("La unidad tiene que ser números");
+            return false;
+        }
+        return true;
+    }
+    
     //Codigo comprobacion para asegurarse de que los valores introducidos son válidos: 
     //cantidad debe ser un valor numerico, solo el campo imagen es opcional, los demás no pueden ser nulos, no puede existir dos categorias del mismo nombre
 }
