@@ -123,6 +123,8 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     Stage stage = this.stage;
     public Acount cuentas;
     public User user;
+    @FXML
+    private Button buttonMod;
     //===============================================================
     /**
      * Initializes the controller class.
@@ -328,5 +330,13 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
 
     private void changeTotal(Event event) {
       
+    }
+    
+    @FXML
+    private void modificarGasto(ActionEvent event) throws IOException {
+        cambio.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/EditGastos.fxml")); 
+        Parent root = loader.load();
+        cambio.getChildren().add(root); 
     }
 }

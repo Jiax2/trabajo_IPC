@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controller;
 
@@ -38,13 +38,14 @@ import model.Category;
 import model.Acount; 
 import model.AcountDAOException;
 import model.Charge;
+import model.User;
 
 /**
  * FXML Controller class
  *
  * @author jiaji
  */
-public class AddGastosController implements Initializable {
+public class EditGastosController implements Initializable {
 
     @FXML
     private TextField nameGasto;
@@ -58,6 +59,8 @@ public class AddGastosController implements Initializable {
     private TextField unidades;
     @FXML
     private DatePicker dateGasto;
+    
+    public Image gastoImagen=null; 
     @FXML
     private Button imagenGasto;
     @FXML
@@ -69,18 +72,27 @@ public class AddGastosController implements Initializable {
     @FXML
     private ImageView ImagenView;
     
-    private Image gastoImagen; 
+    private Acount cuentas;
+    private User user;
+    private Image imagen;
+    private Charge gasto;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            nameGasto.setText(gasto.getName());
+            descripGasto.setText(gasto.getDescription());
+            cantidad.setText(gasto.getCost()+ "");
+            unidades.setText(gasto.getUnits() + "");
+            imagen=user.getImage();
             listacategoria();
         } catch (AcountDAOException ex) {
-            Logger.getLogger(AddGastosController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditGastosController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(AddGastosController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditGastosController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         aceptarButton.disableProperty().bind(Bindings.createBooleanBinding(() ->
@@ -94,7 +106,7 @@ public class AddGastosController implements Initializable {
                 //dateGasto.DateTimeFormatter().texProperty()
               
         ));
-    }    
+    }
     
     @FXML
     private void imagen(ActionEvent event) throws IOException{
@@ -168,3 +180,4 @@ public class AddGastosController implements Initializable {
     //Codigo comprobacion para asegurarse de que los valores introducidos son válidos: 
     //cantidad debe ser un valor numerico, solo el campo imagen es opcional, los demás no pueden ser nulos, no puede existir dos categorias del mismo nombre
 }
+

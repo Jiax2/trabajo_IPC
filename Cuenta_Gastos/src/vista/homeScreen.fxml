@@ -64,7 +64,7 @@
                   <Insets bottom="5.0" />
                </GridPane.margin>
                <graphic>
-                  <ImageView fitHeight="63.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="75.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Gastos.png" />
                      </image>
@@ -79,9 +79,9 @@
                   <Insets bottom="5.0" />
                </GridPane.margin>
                <graphic>
-                  <ImageView fitHeight="68.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="84.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Categorias%202.0.png" />
+                        <Image url="@../images/Categorias.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -94,20 +94,27 @@
                   <Insets bottom="5.0" />
                </GridPane.margin>
                <graphic>
-                  <ImageView fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="72.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/salir%202.0.png" />
+                        <Image url="@../images/Cuenta.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="boton" fx:id="salir" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exit" prefHeight="85.0" prefWidth="78.0" stylesheets="@../css/Styles.css" text="Salir" GridPane.rowIndex="4">
+            <Button id="boton" fx:id="salir" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exit" prefHeight="85.0" prefWidth="78.0" stylesheets="@../css/Styles.css" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
                <GridPane.margin>
                   <Insets bottom="10.0" />
                </GridPane.margin>
+               <graphic>
+                  <ImageView fitHeight="81.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/salir%2069.0.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </GridPane>
@@ -138,7 +145,8 @@
                               <GridPane maxHeight="-Infinity" maxWidth="-Infinity" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.39995117187505" minWidth="10.0" prefWidth="93.6" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.800048828125" minWidth="10.0" prefWidth="392.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.800048828125" minWidth="10.0" prefWidth="93.6" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.800048828125" minWidth="10.0" prefWidth="200.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -155,6 +163,18 @@
                                              </image>
                                           </ImageView>
                                        </graphic>
+                                    </Button>
+                                    <Button fx:id="buttonMod" mnemonicParsing="false" onAction="#modificarGasto" prefHeight="31.0" prefWidth="94.0" text="Modificar" GridPane.columnIndex="2">
+                                       <graphic>
+                                          <ImageView fitHeight="18.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/HOliwi%20UwU%20jiji%20xdxd11111.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <GridPane.margin>
+                                          <Insets bottom="2.0" left="5.0" />
+                                       </GridPane.margin>
                                     </Button>
                                     <Button fx:id="deleteGasto" mnemonicParsing="false" onAction="#eliminarGasto" prefHeight="0.0" prefWidth="92.0" text="Eliminar" GridPane.columnIndex="1">
                                        <opaqueInsets>
