@@ -21,6 +21,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -98,6 +100,12 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     private TableColumn<?, ?> colInfo;
     @FXML
     private TabPane tabPane;
+    @FXML
+    private NumberAxis datos;
+    @FXML
+    private CategoryAxis categoria;
+    @FXML
+    private Button editar;
     //===============================================================
     /**
      * Initializes the controller class.
@@ -232,5 +240,9 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
 
     private void changeTotal(Event event) {
       
+    }
+
+    @FXML
+    private void editarGasto(ActionEvent event) {
     }
 }
