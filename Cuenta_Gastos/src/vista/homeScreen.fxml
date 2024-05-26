@@ -18,9 +18,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="fondo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../css/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeScreenController">
+<BorderPane id="fondo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="filling" stylesheets="@../css/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeScreenController">
    <left>
-      <GridPane prefHeight="400.0" prefWidth="158.0">
+      <GridPane prefHeight="400.0" prefWidth="158.0" styleClass="toolbar">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
@@ -32,48 +32,63 @@
             <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <GridPane prefHeight="113.0" prefWidth="158.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <GridPane prefHeight="113.0" prefWidth="158.0" styleClass="paneBack" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ImageView fx:id="uImagen" fitHeight="82.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="uImagen" fitHeight="82.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                </children>
             </GridPane>
             <Label id="texto" fx:id="usuario" alignment="CENTER" prefHeight="18.0" prefWidth="156.0" stylesheets="@../css/Styles.css" text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="5.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Label>
-            <Button id="boton" fx:id="gastos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="66.0" minWidth="158.0" mnemonicParsing="false" onAction="#cambiarGasto" prefHeight="66.0" prefWidth="158.0" stylesheets="@../css/Styles.css" text="Gastos" textFill="WHITE" GridPane.rowIndex="1">
+            <Button id="boton" fx:id="gastos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="66.0" minWidth="118.0" mnemonicParsing="false" onAction="#cambiarGasto" prefHeight="76.0" prefWidth="226.0" styleClass="inicio" stylesheets="@../css/Styles.css" text="Gastos" GridPane.rowIndex="1">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
+               <GridPane.margin>
+                  <Insets bottom="5.0" />
+               </GridPane.margin>
             </Button>
-            <Button id="boton" fx:id="categorias" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cambiarCategoria" prefHeight="88.0" prefWidth="158.0" stylesheets="@../css/Styles.css" text="Categorias" textFill="WHITE" GridPane.rowIndex="2">
+            <Button id="boton" fx:id="categorias" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cambiarCategoria" prefHeight="90.0" prefWidth="90.0" styleClass="text" stylesheets="@../css/Styles.css" text="Categorias" GridPane.rowIndex="2">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
+               <GridPane.margin>
+                  <Insets bottom="5.0" />
+               </GridPane.margin>
             </Button>
-            <Button id="boton" fx:id="cuenta" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cambiarCuenta" prefHeight="79.0" prefWidth="158.0" stylesheets="@../css/Styles.css" text="Cuenta" textFill="WHITE" GridPane.rowIndex="3">
+            <Button id="boton" fx:id="cuenta" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cambiarCuenta" prefHeight="81.0" prefWidth="73.0" stylesheets="@../css/Styles.css" text="Cuenta" GridPane.rowIndex="3">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
+               <GridPane.margin>
+                  <Insets bottom="5.0" />
+               </GridPane.margin>
             </Button>
-            <Button id="boton" fx:id="salir" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exit" prefHeight="83.0" prefWidth="158.0" stylesheets="@../css/Styles.css" text="Salir" textFill="WHITE" GridPane.rowIndex="4">
+            <Button id="boton" fx:id="salir" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exit" prefHeight="85.0" prefWidth="78.0" stylesheets="@../css/Styles.css" text="Salir" GridPane.rowIndex="4">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
+               <GridPane.margin>
+                  <Insets bottom="10.0" />
+               </GridPane.margin>
             </Button>
          </children>
       </GridPane>
    </left>
    <center>
-      <GridPane fx:id="cambio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="554.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="cambio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="554.0" styleClass="toolbar" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
@@ -81,21 +96,21 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TabPane id="borde" fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="539.0" stylesheets="@../css/Styles.css">
+            <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="539.0" styleClass="filling" stylesheets="@../css/Styles.css">
                <tabs>
-                  <Tab fx:id="mensualTab" text="Mensual">
+                  <Tab fx:id="mensualTab" styleClass="tabs" text="Mensual">
                      <content>
-                        <GridPane prefHeight="100.0" prefWidth="522.0">
+                        <GridPane prefHeight="100.0" prefWidth="522.0" styleClass="paneBack">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints maxHeight="109.59999389648438" minHeight="10.0" prefHeight="106.40001220703125" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="116.7999755859375" minHeight="10.0" prefHeight="101.59999389648438" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="52.80000610351563" minHeight="10.0" prefHeight="48.80000610351563" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <GridPane prefHeight="80.0" prefWidth="522.0">
+                              <GridPane prefHeight="80.0" prefWidth="522.0" styleClass="toolbar">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
@@ -105,23 +120,29 @@
                                   <RowConstraints maxHeight="42.00000228881835" minHeight="10.0" prefHeight="42.00000228881835" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="300,00€" wrappingWidth="143.6468505859375" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="300,00€" wrappingWidth="143.6468505859375" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                        <font>
-                                          <Font size="40.0" />
+                                          <Font name="System Bold" size="35.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Enero 2024" wrappingWidth="77.1019287109375" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gasto mensual" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Enero 2024" wrappingWidth="77.1019287109375" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                        <font>
-                                          <Font size="28.0" />
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Gasto mensual" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="28.0" />
                                        </font>
                                     </Text>
                                  </children>
                               </GridPane>
-                            <Button id="botonAc" mnemonicParsing="false" stylesheets="@../css/Styles.css" text="Comparar" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                            <Button id="botonAc" mnemonicParsing="false" prefHeight="15.0" prefWidth="99.0" text="Comparar" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="7.0" />
-                                 </GridPane.margin></Button>
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Button>
                               <TableView fx:id="tablaMes" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="221.0" prefWidth="522.0" GridPane.rowIndex="2">
                                 <columns>
                                     <TableColumn prefWidth="168.0" text="Nombre" />
@@ -137,9 +158,9 @@
                         </GridPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="anualTab" text="Anual">
+                  <Tab fx:id="anualTab" styleClass="tabs" text="Anual">
                      <content>
-                        <GridPane>
+                        <GridPane styleClass="toolbar">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                            </columnConstraints>
@@ -149,9 +170,9 @@
                               <RowConstraints maxHeight="42.39999999999998" minHeight="10.0" prefHeight="39.19998779296873" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gasto anual" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <Text fill="#080000" strokeType="OUTSIDE" strokeWidth="0.0" text="Gasto anual" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <font>
-                                    <Font size="28.0" />
+                                    <Font name="System Bold" size="28.0" />
                                  </font>
                                  <GridPane.margin>
                                     <Insets bottom="10.0" top="10.0" />
@@ -159,10 +180,10 @@
                               </Text>
                               <BarChart fx:id="grafica" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="383.0" prefWidth="522.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                 <xAxis>
-                                  <CategoryAxis id="texto" side="BOTTOM" stylesheets="@../css/Styles.css" tickLabelFill="WHITE" />
+                                  <CategoryAxis id="texto" side="BOTTOM" stylesheets="@../css/Styles.css" />
                                 </xAxis>
                                 <yAxis>
-                                  <NumberAxis id="texto" side="LEFT" stylesheets="@../css/Styles.css" tickLabelFill="WHITE" />
+                                  <NumberAxis id="texto" side="LEFT" stylesheets="@../css/Styles.css" tickLabelFill="#100000" />
                                 </yAxis>
                               </BarChart>
                               <Button id="botonAc" mnemonicParsing="false" stylesheets="@../css/Styles.css" text="Imprime reporte" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
@@ -173,41 +194,47 @@
                         </GridPane>
                      </content>
                   </Tab>
-                  <Tab text="Total">
+                  <Tab styleClass="tabs" text="Total">
                      <content>
-                        <GridPane fx:id="pantallaTotal">
+                        <GridPane fx:id="pantallaTotal" styleClass="toolbar">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="41.2" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.799999999999997" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="317.6000122070312" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="40.79999847412109" minHeight="10.0" prefHeight="40.79999847412109" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="308.8000015258789" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <GridPane maxHeight="-Infinity" maxWidth="-Infinity" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.39995117187505" minWidth="10.0" prefWidth="93.5999755859375" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.800048828125" minWidth="10.0" prefWidth="430.4000244140625" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.39995117187505" minWidth="10.0" prefWidth="93.6" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.800048828125" minWidth="10.0" prefWidth="392.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                  <Button id="botonAc" fx:id="buttonAdd" mnemonicParsing="false" onAction="#actionAddGasto" stylesheets="@../css/Styles.css" text="Añadir gasto">
+                                  <Button fx:id="buttonAdd" mnemonicParsing="false" onAction="#actionAddGasto" prefHeight="15.0" prefWidth="89.0" stylesheets="@../css/Styles.css" text="Añadir ">
                                        <GridPane.margin>
-                                          <Insets left="5.0" />
+                                          <Insets bottom="2.0" left="5.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <Button id="botonAc" fx:id="deleteGasto" mnemonicParsing="false" onAction="#eliminarGasto" prefHeight="0.0" prefWidth="92.0" stylesheets="@../css/Styles.css" text="Eliminar gasto" GridPane.columnIndex="1" />
+                                    <Button fx:id="deleteGasto" mnemonicParsing="false" onAction="#eliminarGasto" prefHeight="0.0" prefWidth="92.0" text="Eliminar" GridPane.columnIndex="1">
+                                       <opaqueInsets>
+                                          <Insets bottom="2.0" />
+                                       </opaqueInsets>
+                                       <GridPane.margin>
+                                          <Insets bottom="2.0" left="5.0" />
+                                       </GridPane.margin></Button>
                                  </children>
                               </GridPane>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gastos totales" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gastos totales" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <font>
-                                    <Font size="28.0" />
+                                    <Font name="System Bold" size="28.0" />
                                  </font>
                               </Text>
-                              <TableView fx:id="tablaTot" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+                              <TableView fx:id="tablaTot" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="295.0" prefWidth="525.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                                  <columns>
                                     <TableColumn fx:id="colNombre" prefWidth="106.4000244140625" text="Nombre" />
                                     <TableColumn fx:id="colCantidad" prefWidth="108.79998779296875" text="Cantidad" />
@@ -227,7 +254,7 @@
             </TabPane>
          </children>
          <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" />
+            <Insets bottom="15.0" left="10.0" right="15.0" />
          </padding>
       </GridPane>
    </center>

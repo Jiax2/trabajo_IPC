@@ -16,23 +16,29 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="175.99999389648437" minHeight="8.799987411499018" prefHeight="53.80000190734863" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="355.20001258850095" minHeight="10.0" prefHeight="46.59999809265136" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="482.3999938964844" minHeight="10.0" prefHeight="250.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="59.4" minHeight="8.799987411499018" prefHeight="46.60001220703125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="48.19998779296875" minHeight="10.0" prefHeight="48.19998779296875" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="238.8000244140625" vgrow="ALWAYS" />
 </rowConstraints>
    <children>
-      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorias" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Text fill="#0d0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorias" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <font>
-            <Font size="28.0" />
+            <Font name="System Bold" size="28.0" />
          </font>
       </Text>
-      <ToolBar id="fondo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="69.0" prefWidth="602.0" stylesheets="@../css/Styles.css" GridPane.rowIndex="1">
+      <ToolBar id="fondo" prefHeight="69.0" prefWidth="602.0" stylesheets="@../css/Styles.css" GridPane.rowIndex="1">
         <items>
-          <Button id="botonAc" fx:id="catAdd" mnemonicParsing="false" onAction="#addCategoria" stylesheets="@../css/Styles.css" text="Añadir Categoría" />
-            <Button id="botonAc" fx:id="catDel" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteCategoria" stylesheets="@../css/Styles.css" text="Eliminar Categoría" />
+          <Button id="botonAc" fx:id="catAdd" mnemonicParsing="false" onAction="#addCategoria" stylesheets="@../css/Styles.css" text="Añadir Categoría">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button id="botonAc" fx:id="catDel" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteCategoria" stylesheets="@../css/Styles.css" text="Eliminar Categoría">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
         </items>
       </ToolBar>
-      <TableView fx:id="catabla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="186.0" prefWidth="514.0" GridPane.rowIndex="2">
+      <TableView fx:id="catabla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="236.0" prefWidth="564.0" GridPane.rowIndex="2">
         <columns>
           <TableColumn fx:id="taylor" prefWidth="227.20001828670502" text="Nombre" />
           <TableColumn fx:id="swift" prefWidth="372.7998962402344" text="Descripción" />
