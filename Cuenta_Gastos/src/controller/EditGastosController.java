@@ -73,7 +73,6 @@ public class EditGastosController implements Initializable {
     private ImageView ImagenView;
     
     private Acount cuentas;
-    private User user;
     private Image imagen;
     private Charge gasto;
     
@@ -83,11 +82,13 @@ public class EditGastosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            cuentas=Acount.getInstance();
+            gasto=cuentas.getUserCharges().get(g)
             nameGasto.setText(gasto.getName());
             descripGasto.setText(gasto.getDescription());
-            cantidad.setText(gasto.getCost()+ "");
-            unidades.setText(gasto.getUnits() + "");
-            imagen=user.getImage();
+            cantidad.setText(Double.toString(gasto.getCost()));
+            unidades.setText(Integer.toString(gasto.getUnits()));
+            imagen=gasto.getImageScan();
             listacategoria();
         } catch (AcountDAOException ex) {
             Logger.getLogger(EditGastosController.class.getName()).log(Level.SEVERE, null, ex);

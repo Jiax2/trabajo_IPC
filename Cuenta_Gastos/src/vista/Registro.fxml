@@ -212,6 +212,11 @@
                               </Text>
                            </children>
                         </VBox>
+                        <ImageView fitHeight="78.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <image>
+                              <Image url="@../images/Denis%20Puto.gif" />
+                           </image>
+                        </ImageView>
                      </children>
                   </GridPane>
                </children>
