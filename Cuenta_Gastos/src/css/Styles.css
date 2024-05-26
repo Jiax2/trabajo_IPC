@@ -1,4 +1,30 @@
-.back{
+/*#fondo{
+    -fx-background-color: #313338;
+}
+
+#boton{
+    -fx-background-color:#404040;
+    -fx-border-color:#FFFFFF;
+    
+}
+
+#botonAc{
+    -fx-background-color:#D5D5D5;
+}
+
+#texto{
+    -fx-text-fill: #FFFFFF;
+}
+
+#borde{
+    -fx-border-color:#FFFFFF;
+}
+
+#acText{
+    -fx-text-fill: #00BFFF;
+}*/
+/*
+*/.back{
     -fx-background-color: #242e49
         
 }
@@ -10,6 +36,9 @@
 }
 .rightback{
     -fx-background-color: #7c677a
+}
+.text{
+   radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 60.177% 17.0455%, radius 59.1743%, #000000 0.0%, #242e49a8 100.0%)
 }
 .button:hover{
     -fx-background-color: #907cb8      
@@ -44,19 +73,4 @@
 }
 .tabs:hover{
     -fx-background-color: #907cb8 
-}
-
-.choice{
-    -fx-background-color: #7c677a;
-  -fx-text-fill: #ffffff;
-  -fx-border-radius: 5px;
-  -fx-background-radius: 5px;
-}
-
-.menuItem{
-     -fx-background-color: #7c677a;
-  -fx-text-fill: #ffffff;
-}
-.menuItem:hover{
-     -fx-background-color: #907cb8 
 }
