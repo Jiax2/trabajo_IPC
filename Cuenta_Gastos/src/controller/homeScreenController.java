@@ -150,11 +150,13 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
+    
+    @FXML
     private void anualSinCategorias() {
-      this.monthNames.addAll(Arrays.asList(this.months));
+      monthNames.addAll(Arrays.asList(this.months));
 
       try {
-         this.listCharge = Acount.getInstance().getUserCharges();
+         listCharge = Acount.getInstance().getUserCharges();
       } catch (AcountDAOException var8) {
          Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, (String)null, var8);
       } catch (IOException var9) {
@@ -162,77 +164,26 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
       }
 
       for(int i = 0; i < 12; ++i) {
-         this.meses[i] = 0.0;
+         meses[i] = 0.0;
       }
 
-      Iterator var10 = this.listCharge.iterator();
-
-      while(var10.hasNext()) {
-         Charge item = (Charge)var10.next();
-         if (item.getDate().getMonthValue() == LocalDate.now().getMonthValue()) {
-            this.meses[item.getDate().getMonthValue() - 1] = this.meses[item.getDate().getMonthValue() - 1] + item.getCost();
-         }
+      for(Charge item: listCharge){
+          if(item.getDate().getYear() == LocalDate.now().getYear()){
+              meses[item.getDate().getMonthValue()-1] = meses[item.getDate().getMonthValue()-1]+item.getCost(); 
+          }
       }
 
       XYChart.Series<String, Number> mes = new XYChart.Series();
       int j = 0;
-      Double[] var3 = this.meses;
-      int var4 = var3.length;
-
-      for(int var5 = 0; var5 < var4; ++var5) {
-         double x = var3[var5];
-         mes.getData().addAll(new XYChart.Data[]{new XYChart.Data(this.months[j], x)});
-         ++j;
+      
+      for(double x: meses) {
+         mes.getData().addAll(new XYChart.Data<>(months[j], x));
+         j++;
       }
 
-      this.grafica.getData().add(mes);
-      this.anual.setDisable(true);
+      grafica.getData().add(mes);
+      anual.setDisable(true);
     }
-    
-    
-    /*private void mostrarAnual(ActionEvent event) {
-        this.mensual.setDisable(false);
-        this.grafica.getData().clear();
-        this.otrosAños.setDisable(false);
-        if (!this.porCategorias.isPressed()) {
-            this.monthNames.addAll(Arrays.asList(this.months));
-
-            try {
-                this.listCharge = Acount.getInstance().getUserCharges();
-            } catch (AcountDAOException var9) {
-                Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, (String)null, var9);
-            } catch (IOException var10) {
-                Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, (String)null, var10);
-            }
-
-            for(int i = 0; i < 12; ++i) {
-                this.meses[i] = 0.0;
-            }
-
-            Iterator var11 = this.listCharge.iterator();
-
-            while(var11.hasNext()) {
-                Charge item = (Charge)var11.next();
-                if (item.getDate().getYear() == LocalDate.now().getYear()) {
-                    this.meses[item.getDate().getMonthValue() - 1] = this.meses[item.getDate().getMonthValue() - 1] + item.getCost();
-                }
-            }
-
-            XYChart.Series<String, Number> mes = new XYChart.Series();
-            int j = 0;
-            Double[] var4 = this.meses;
-            int var5 = var4.length;
-
-            for(int var6 = 0; var6 < var5; ++var6) {
-                double x = var4[var6];
-                mes.getData().addAll(new XYChart.Data[]{new XYChart.Data(this.months[j], x)});
-                ++j;
-            }
-
-            this.grafica.getData().add(mes);
-        }
-
-    }*/
     
     //Botones de añadir y eliminar gastos
     @FXML
@@ -355,4 +306,5 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         Parent root = loader.load();
         cambio.getChildren().add(root); 
     }
+
 }

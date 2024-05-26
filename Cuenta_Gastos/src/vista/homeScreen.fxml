@@ -248,7 +248,7 @@
                               <MenuButton mnemonicParsing="false" styleClass="menuItem" text="Filtrar" textFill="WHITE" GridPane.rowIndex="1">
                                 <items>
                                   <MenuItem fx:id="mensual" mnemonicParsing="false" styleClass="item" text="Otro mes" />
-                                  <MenuItem fx:id="anual" mnemonicParsing="false" styleClass="item" text="Anual" />
+                                  <MenuItem fx:id="anual" mnemonicParsing="false" onAction="#anualSinCategorias" styleClass="item" text="Anual" />
                                     <MenuItem fx:id="otrosAños" mnemonicParsing="false" styleClass="item" text="De otro año" />
                                 </items>
                               </MenuButton>
