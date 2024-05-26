@@ -5,14 +5,18 @@ import java.net.URL;
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,9 +37,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -98,12 +104,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private BarChart<String, Number> grafica;
     @FXML
-    private MenuItem mensual;
-    @FXML
-    private MenuItem anual;
-    @FXML
-    private MenuItem otrosAños;
-    @FXML
     private NumberAxis datos;
     @FXML
     private CategoryAxis categoria;
@@ -114,7 +114,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private TabPane tabPane;
     //Gráfica
-    private ScatterChart<String, Number> graficaMes;
     private ObservableList<String> monthNames=FXCollections.observableArrayList();
     String[] months = DateFormatSymbols.getInstance(new Locale("es", "ES")).getMonths();
     Double[] meses = new Double[12];
@@ -129,6 +128,8 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     public User user;
     @FXML
     private Button buttonMod;
+    @FXML
+    private ChoiceBox<String> choiceBox = new ChoiceBox<>();
     //===============================================================
     /**
      * Initializes the controller class.
@@ -144,6 +145,7 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
             uImagen.setImage(user.getImage());
             usuario.setText(user.getNickName());
             inicializaTot();
+            inicializarChoiceBox();
         } catch (AcountDAOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -151,10 +153,26 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         }
     }    
     
-    @FXML
+    //inicializar el choiceBox
+    private void inicializarChoiceBox() {
+        choiceBox.getItems().add("Anual");
+        choiceBox.getItems().add("Categorias");
+        choiceBox.getSelectionModel().selectFirst(); // Set default selection to "Anual"
+        choiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.equals("Anual")) {
+                    anualSinCategorias();
+                } else if (newValue.equals("Categorias")) {
+                    updateChartByCategory();
+                }
+            }
+        });
+        anualSinCategorias(); // Load the initial data for "Anual"
+    }
     private void anualSinCategorias() {
       monthNames.addAll(Arrays.asList(this.months));
-
+      grafica.getData().clear();
       try {
          listCharge = Acount.getInstance().getUserCharges();
       } catch (AcountDAOException var8) {
@@ -182,8 +200,40 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
       }
 
       grafica.getData().add(mes);
-      anual.setDisable(true);
     }
+private void updateChartByCategory() {
+    // Limpiar los datos anteriores de la gráfica
+    grafica.getData().clear();
+    
+    // Crear un mapa para almacenar los gastos por categoría
+    Map<String, Double> categoryExpenses = new HashMap<>();
+    
+    // Obtener la lista de cargos del usuario
+    try {
+        listCharge = Acount.getInstance().getUserCharges();
+    } catch (AcountDAOException | IOException ex) {
+        Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+    // Sumar los gastos por categoría
+    for (Charge charge : listCharge) {
+        String category = charge.getCategory() != null ? charge.getCategory().getName() : "Sin categoría";
+        categoryExpenses.put(category, categoryExpenses.getOrDefault(category, 0.0) + charge.getCost());
+    }
+    
+    // Crear una serie de datos para la gráfica
+    XYChart.Series<String, Number> series = new XYChart.Series<>();
+    series.setName("Gastos por Categoría");
+
+    // Añadir datos a la serie
+    for (Map.Entry<String, Double> entry : categoryExpenses.entrySet()) {
+        series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+    }
+    
+    // Añadir la serie de datos a la gráfica
+    grafica.getData().add(series);
+}
+
     
     //Botones de añadir y eliminar gastos
     @FXML
@@ -260,7 +310,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/cuenta.fxml")); 
         Parent root = loader.load();
         cambio.getChildren().add(root);
-        
     }
 
     @FXML
@@ -271,7 +320,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Iniciar sesión");
-        
     }
 
     @FXML
@@ -289,14 +337,9 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
                 Acount.getInstance().removeCharge(selectedCharge);
                 inicializaTot();
                 tabPane.getSelectionModel().select(totalTab);
-                changeTotal(event);
             }else{
             }
         }
-    }
-
-    private void changeTotal(Event event) {
-      
     }
     
     @FXML
@@ -306,5 +349,4 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         Parent root = loader.load();
         cambio.getChildren().add(root); 
     }
-
 }

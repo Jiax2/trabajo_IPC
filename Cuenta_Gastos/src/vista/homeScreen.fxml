@@ -5,9 +5,8 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -245,13 +244,10 @@
                                 </yAxis>
                               </BarChart>
                               <Button id="botonAc" mnemonicParsing="false" stylesheets="@../css/Styles.css" text="Imprime reporte" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                              <MenuButton mnemonicParsing="false" styleClass="menuItem" text="Filtrar" textFill="WHITE" GridPane.rowIndex="1">
-                                <items>
-                                  <MenuItem fx:id="mensual" mnemonicParsing="false" styleClass="item" text="Otro mes" />
-                                  <MenuItem fx:id="anual" mnemonicParsing="false" onAction="#anualSinCategorias" styleClass="item" text="Anual" />
-                                    <MenuItem fx:id="otrosAños" mnemonicParsing="false" styleClass="item" text="De otro año" />
-                                </items>
-                              </MenuButton>
+                              <ChoiceBox fx:id="choiceBox" prefHeight="26.0" prefWidth="103.0" styleClass="menuItem" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" />
+                                 </GridPane.margin></ChoiceBox>
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
