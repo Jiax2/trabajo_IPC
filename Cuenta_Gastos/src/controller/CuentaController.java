@@ -176,7 +176,7 @@ public class CuentaController implements Initializable {
         !passText.matches(".*\\d.*") ||
         !passText.matches(".*[a-z].*") ||
         !passText.matches(".*[A-Z].*") ||
-        !passText.matches(".*[!@#$%^&|+=_¿¡?*/ªº€¬-].*") ||
+        !passText.matches(".*[!@#$%^&+=_.,¿¡?*/ªº€¬-].*") ||
         passText.contains(" ")){
             errMen.setText("Contraseña inválida");
             return false;
