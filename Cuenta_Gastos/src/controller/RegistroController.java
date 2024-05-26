@@ -25,6 +25,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -208,5 +209,18 @@ public class RegistroController implements Initializable {
      private Image defaultImagen(){
         InputStream input = getClass().getResourceAsStream("/images/default.png");
         return new Image(input);
+    }
+
+    @FXML
+    private void info(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Información de la aplicación");
+        alert.setContentText("MalGastos\n"+"Es una aplicación para gestión de gastos.");
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void salir(ActionEvent event) {
+        System.exit(0);
     }
 }

@@ -70,8 +70,8 @@ public class CuentaController implements Initializable {
     private Text errMen;
     
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
-    public Acount cuentas;
-    public User user;
+    private Acount cuentas;
+    private User user;
     private Image imagen;
     /**
      * Initializes the controller class.
@@ -112,6 +112,7 @@ public class CuentaController implements Initializable {
     @FXML
     private void saveChange(ActionEvent event)throws AcountDAOException, IOException{
         if(Comprobar()){
+            errMen.setText("");
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setHeaderText("Guardar cambios");
             alert.setContentText("¿Estas seguro que quieres guardar estos cambios?");
@@ -175,10 +176,9 @@ public class CuentaController implements Initializable {
         !passText.matches(".*\\d.*") ||
         !passText.matches(".*[a-z].*") ||
         !passText.matches(".*[A-Z].*") ||
-        !passText.matches(".*[!@#$%^&+=_¿¡?*/ªº€¬-].*") ||
+        !passText.matches(".*[!@#$%^&|+=_¿¡?*/ªº€¬-].*") ||
         passText.contains(" ")){
             errMen.setText("Contraseña inválida");
-            pass.clear();
             return false;
         }
 

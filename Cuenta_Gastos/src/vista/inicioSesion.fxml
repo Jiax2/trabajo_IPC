@@ -32,7 +32,7 @@
    <children>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
-            <MenuBar styleClass="toolbar" VBox.vgrow="ALWAYS">
+            <MenuBar VBox.vgrow="ALWAYS">
               <menus>
                 <Menu mnemonicParsing="false" text="Ayuda">
                   <items>

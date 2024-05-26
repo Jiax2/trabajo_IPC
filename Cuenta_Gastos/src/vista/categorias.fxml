@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -31,11 +33,25 @@
           <Button id="botonAc" fx:id="catAdd" mnemonicParsing="false" onAction="#addCategoria" stylesheets="@../css/Styles.css" text="Añadir Categoría">
                <font>
                   <Font name="System Bold" size="12.0" />
-               </font></Button>
+               </font>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Añadir.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Button id="botonAc" fx:id="catDel" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteCategoria" stylesheets="@../css/Styles.css" text="Eliminar Categoría">
                <font>
                   <Font name="System Bold" size="12.0" />
-               </font></Button>
+               </font>
+               <graphic>
+                  <ImageView fitHeight="83.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Cancelar.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
         </items>
       </ToolBar>
       <TableView fx:id="catabla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="236.0" prefWidth="564.0" GridPane.rowIndex="2">

@@ -1,41 +1,55 @@
 package controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import java.io.IOException;
+import java.net.URL;
+import java.text.DateFormatSymbols;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.ScatterChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
 import model.Acount;
 import model.AcountDAOException;
 import model.Category;
 import model.Charge;
 import model.User;
+
+
 
 /**
  * FXML Controller class
@@ -74,30 +88,41 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     @FXML
     private ImageView uImagen;
     @FXML
-    private Tab mensualTab;
+    private Tab graficaTab;
     @FXML
-    private Tab anualTab;
     private Tab totalTab;
-     @FXML
-    private TableView<Charge> tablaMes;
     @FXML
-    private BarChart<?, ?> grafica;
+    private BarChart<String, Number> grafica;
+    @FXML
+    private MenuItem mensual;
+    @FXML
+    private MenuItem anual;
+    @FXML
+    private MenuItem otrosAños;
+    @FXML
+    private NumberAxis datos;
+    @FXML
+    private CategoryAxis categoria;
     @FXML
     private TableView<Charge> tablaTot;
-    
-    private ObservableList<Charge> listaGastosMes = null; 
-    private List<Charge> datosMes=null;
-    
+    @FXML
+    private TableColumn<?, ?> colInfo;
+    @FXML
+    private TabPane tabPane;
+    //Gráfica
+    private ScatterChart<String, Number> graficaMes;
+    private ObservableList<String> monthNames=FXCollections.observableArrayList();
+    String[] months = DateFormatSymbols.getInstance(new Locale("es", "ES")).getMonths();
+    Double[] meses = new Double[12];
+    List<Charge> listCharge;
+    List<Category> listCategory;
+    //Tabla gastos totales
     private ObservableList<Charge> listaGastosTot = null; 
     private List<Charge> datosTot=null;
     
     Stage stage = this.stage;
     public Acount cuentas;
     public User user;
-    @FXML
-    private TableColumn<?, ?> colInfo;
-    @FXML
-    private TabPane tabPane;
     //===============================================================
     /**
      * Initializes the controller class.
@@ -108,18 +133,100 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         try{
             cuentas=Acount.getInstance();
             user=cuentas.getLoggedUser();
+            this.anualSinCategorias();
             //Inicializa la imagen y el texto del usuario 
             uImagen.setImage(user.getImage());
             usuario.setText(user.getNickName());
-            inicializaMes();
             inicializaTot();
-            
         } catch (AcountDAOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
+    private void anualSinCategorias() {
+      this.monthNames.addAll(Arrays.asList(this.months));
+
+      try {
+         this.listCharge = Acount.getInstance().getUserCharges();
+      } catch (AcountDAOException var8) {
+         Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, (String)null, var8);
+      } catch (IOException var9) {
+         Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, (String)null, var9);
+      }
+
+      for(int i = 0; i < 12; ++i) {
+         this.meses[i] = 0.0;
+      }
+
+      Iterator var10 = this.listCharge.iterator();
+
+      while(var10.hasNext()) {
+         Charge item = (Charge)var10.next();
+         if (item.getDate().getMonthValue() == LocalDate.now().getMonthValue()) {
+            this.meses[item.getDate().getMonthValue() - 1] = this.meses[item.getDate().getMonthValue() - 1] + item.getCost();
+         }
+      }
+
+      XYChart.Series<String, Number> mes = new XYChart.Series();
+      int j = 0;
+      Double[] var3 = this.meses;
+      int var4 = var3.length;
+
+      for(int var5 = 0; var5 < var4; ++var5) {
+         double x = var3[var5];
+         mes.getData().addAll(new XYChart.Data[]{new XYChart.Data(this.months[j], x)});
+         ++j;
+      }
+
+      this.grafica.getData().add(mes);
+      this.anual.setDisable(true);
+    }
+    
+    
+    /*private void mostrarAnual(ActionEvent event) {
+        this.mensual.setDisable(false);
+        this.grafica.getData().clear();
+        this.otrosAños.setDisable(false);
+        if (!this.porCategorias.isPressed()) {
+            this.monthNames.addAll(Arrays.asList(this.months));
+
+            try {
+                this.listCharge = Acount.getInstance().getUserCharges();
+            } catch (AcountDAOException var9) {
+                Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, (String)null, var9);
+            } catch (IOException var10) {
+                Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, (String)null, var10);
+            }
+
+            for(int i = 0; i < 12; ++i) {
+                this.meses[i] = 0.0;
+            }
+
+            Iterator var11 = this.listCharge.iterator();
+
+            while(var11.hasNext()) {
+                Charge item = (Charge)var11.next();
+                if (item.getDate().getYear() == LocalDate.now().getYear()) {
+                    this.meses[item.getDate().getMonthValue() - 1] = this.meses[item.getDate().getMonthValue() - 1] + item.getCost();
+                }
+            }
+
+            XYChart.Series<String, Number> mes = new XYChart.Series();
+            int j = 0;
+            Double[] var4 = this.meses;
+            int var5 = var4.length;
+
+            for(int var6 = 0; var6 < var5; ++var6) {
+                double x = var4[var6];
+                mes.getData().addAll(new XYChart.Data[]{new XYChart.Data(this.months[j], x)});
+                ++j;
+            }
+
+            this.grafica.getData().add(mes);
+        }
+
+    }*/
     
     //Botones de añadir y eliminar gastos
     @FXML
@@ -131,17 +238,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
     }
     //=============================================================
     //Muestreo de los gastos en la lista
-    
-    private void inicializaMes() throws AcountDAOException, IOException{
-        //Carga gastos
-        datosMes=cuentas.getUserCharges();
-        //Inicializa columnas
-        
-         //Añade a la tabla
-        listaGastosMes=FXCollections.observableList(datosMes);
-        tablaMes.setItems(listaGastosMes);
-        
-    }
     
     private void inicializaTot() throws AcountDAOException, IOException{
         //Carga gastos
