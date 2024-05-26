@@ -72,7 +72,7 @@ public class CuentaController implements Initializable {
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
     public Acount cuentas;
     public User user;
-    private Image imagen=null;
+    private Image imagen;
     /**
      * Initializes the controller class.
      */
@@ -82,6 +82,7 @@ public class CuentaController implements Initializable {
             cuentas=Acount.getInstance();
             user=cuentas.getLoggedUser();
             //Inicializa la imagen y el texto del usuario 
+            imagen=user.getImage();
             nombre.setText(user.getName());
             apellido.setText(user.getSurname());
             usuario.setText(user.getNickName());
@@ -109,22 +110,24 @@ public class CuentaController implements Initializable {
     }    
     
     @FXML
-    private void saveChange(ActionEvent event){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setHeaderText("Guardar cambios");
-        alert.setContentText("¿Estas seguro que quieres guardar estos cambios?");
-        ButtonType buttonTypeAccept = new ButtonType("Aceptar");
-        ButtonType buttonTypeCancel = new ButtonType("Cancelar", ButtonData.CANCEL_CLOSE);
-        alert.getButtonTypes().setAll(buttonTypeAccept,buttonTypeCancel);
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent()){
-            if (result.get() == buttonTypeAccept){
-                user.setName(nombre.getText());
-                user.setSurname(apellido.getText());
-                user.setPassword(pass.getText());
-                user.setEmail(mail.getText());
-                user.setImage(imagen);
-            }else{
+    private void saveChange(ActionEvent event)throws AcountDAOException, IOException{
+        if(Comprobar()){
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setHeaderText("Guardar cambios");
+            alert.setContentText("¿Estas seguro que quieres guardar estos cambios?");
+            ButtonType buttonTypeAccept = new ButtonType("Aceptar");
+            ButtonType buttonTypeCancel = new ButtonType("Cancelar", ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(buttonTypeAccept,buttonTypeCancel);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent()){
+                if (result.get() == buttonTypeAccept){
+                    user.setName(nombre.getText());
+                    user.setSurname(apellido.getText());
+                    user.setPassword(pass.getText());
+                    user.setEmail(mail.getText());
+                    user.setImage(imagen);
+                }else{
+                }
             }
         }
     }
@@ -165,32 +168,22 @@ public class CuentaController implements Initializable {
     
     private boolean Comprobar() throws AcountDAOException, IOException{
         String usuarioText = usuario.getText();
-        String pass1Text = pass.getText();
+        String passText = pass.getText();
         String mailText = mail.getText();
 
-        if(Acount.getInstance().logInUserByCredentials(usuarioText, pass1Text)){
-            errMen.setText("Ya existe este usuario");
-            return false;
-        }
-
-        if(pass1Text.length() <= 8 || pass1Text.length() >= 20 ||
-        !pass1Text.matches(".*\\d.*") ||
-        !pass1Text.matches(".*[a-z].*") ||
-        !pass1Text.matches(".*[A-Z].*") ||
-        !pass1Text.matches(".*[!@#$%^&+=_-¿¡?*/ªº€].*") ||
-        pass1Text.contains(" ")){
+        if(passText.length() <= 8 || passText.length() >= 20 ||
+        !passText.matches(".*\\d.*") ||
+        !passText.matches(".*[a-z].*") ||
+        !passText.matches(".*[A-Z].*") ||
+        !passText.matches(".*[!@#$%^&+=_¿¡?*/ªº€¬-].*") ||
+        passText.contains(" ")){
             errMen.setText("Contraseña inválida");
             pass.clear();
             return false;
         }
 
-        if(!comprobarArrobaPunto(mailText)){
+        else if(!comprobarArrobaPunto(mailText)){
             errMen.setText("El correo no es válido");
-            return false;
-        }
-
-        if(usuarioText.length() <= 6 || usuarioText.length() >= 15 || usuarioText.contains(" ")){
-            errMen.setText("Usuario inválido");
             return false;
         }
 

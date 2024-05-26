@@ -178,7 +178,7 @@ public class RegistroController implements Initializable {
         !pass1Text.matches(".*\\d.*") ||
         !pass1Text.matches(".*[a-z].*") ||
         !pass1Text.matches(".*[A-Z].*") ||
-        !pass1Text.matches(".*[!@#$%^&+=_-¿¡?*/ªº€].*") ||
+        !pass1Text.matches(".*[!@#$%^&+=_¿¡?*/ªº€¬-].*") ||
         pass1Text.contains(" ")){
             error.setText("Contraseña inválida");
             pass1.clear();
