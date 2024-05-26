@@ -214,23 +214,6 @@ public class HomeScreenController extends JavaFXMLApplication implements Initial
         stage.setTitle("Iniciar sesión");
         
     }
-    public void setupChargeTable(TableView<Charge> tableView, TableColumn<Charge, String> nameColumn, TableColumn<Charge, String> categoryColumn, TableColumn<Charge, LocalDate> dateColumn, ObservableList<Charge> charges) {
-        // Asigna la lista observable a la tabla
-        tableView.setItems(charges);
-
-        // Asigna las propiedades de Charge a cada columna
-        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-        categoryColumn.setCellValueFactory(cellData -> {
-            Charge charge = cellData.getValue();
-            Category category = charge.getCategory();
-            if (category != null) {
-                return new SimpleStringProperty(category.getName());
-            } else {
-                return new SimpleStringProperty("");
-            }
-        });
-        dateColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDate()));
-    }
 
     @FXML
     private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException {

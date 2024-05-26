@@ -89,8 +89,8 @@ public class AddGastosController implements Initializable {
         fileChooser.setTitle("Seleccionar Imagen");
 
         // Configurar el filtro de extensión para mostrar solo archivos de imagen
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de imagen(.png,.jpg,*.jpeg)" ,
-                ".png", ".jpg", "*.jpeg");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de imagen(*.png,*.jpg,*.jpeg)" ,
+                "*.png", "*.jpg", "*.jpeg");
         fileChooser.getExtensionFilters().add(extFilter);
 
         // Mostrar el diálogo de selección de archivos y obtener la imagen seleccionada
