@@ -19,8 +19,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
@@ -36,11 +39,15 @@ public class inicioSesionController implements Initializable {
     @FXML
     private TextField User;
     @FXML
-    private PasswordField Password;
-    @FXML
     private Text errCon;
     @FXML
     private Button inicio;
+    @FXML
+    private PasswordField password;
+    @FXML
+    private ToggleButton toggleButton;
+    @FXML
+    private Label shownPassword;
     
     
     /**
@@ -48,19 +55,20 @@ public class inicioSesionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        shownPassword.setVisible(false);
         //Desabilita boton inicio
         inicio.disableProperty().bind(Bindings.createBooleanBinding(() ->
                 User.getText().isEmpty() ||
-                Password.getText().isEmpty(),
+                password.getText().isEmpty(),
                 User.textProperty(),
-                Password.textProperty()
+                password.textProperty()
               
         ));
     }
     
     @FXML
     private void pulsadoIniciar(ActionEvent event) throws IOException, AcountDAOException {
-        if (Acount.getInstance().logInUserByCredentials(User.getText(), Password.getText())==false){
+        if (Acount.getInstance().logInUserByCredentials(User.getText(), password.getText())==false){
             errCon.setText("Usuario o contraseña no son correctos");
         } else {
             Parent root = FXMLLoader.load(getClass().getResource("/vista/homeScreen.fxml"));
@@ -95,5 +103,29 @@ public class inicioSesionController implements Initializable {
     @FXML
     private void salir(ActionEvent event) {
         System.exit(0);
+    }
+    
+    @FXML
+    private void passwordFieldKeyTyped(KeyEvent event) {
+        shownPassword.textProperty().bind(Bindings.concat(password.getText()));
+        
+    }
+
+    @FXML
+    private void toggleButton(ActionEvent event) {
+        if(toggleButton.isSelected()){
+            shownPassword.setVisible(true);
+            shownPassword.textProperty().bind(Bindings.concat(password.getText()));
+        
+            toggleButton.setText("Ocultar");
+            password.setVisible(false);
+        
+        }else{
+            toggleButton.setText("Ver");
+            password.setVisible(true);
+         
+            shownPassword.setVisible(false);
+          
+        }
     }
 }
