@@ -11,11 +11,13 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -121,46 +123,66 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="317.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <children>
-                              <TextField fx:id="nombre">
+                              <Pane>
                                  <VBox.margin>
                                     <Insets top="4.0" />
                                  </VBox.margin>
-                              </TextField>
-                              <TextField fx:id="apellido">
+                                 <children>
+                                    <TextField fx:id="nombre" prefHeight="25.0" prefWidth="291.0" />
+                                 </children>
+                              </Pane>
+                              <Pane>
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
-                              </TextField>
-                              <TextField fx:id="usuario" promptText="Entre 6-15 carácteres">
+                                 <children>
+                                    <TextField fx:id="apellido" prefHeight="25.0" prefWidth="291.0" />
+                                 </children>
+                              </Pane>
+                              <Pane>
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
-                              </TextField>
+                                 <children>
+                                    <TextField fx:id="usuario" prefHeight="25.0" prefWidth="291.0" promptText="Entre 6-15 carácteres" />
+                                 </children>
+                              </Pane>
                               <Label id="texto" stylesheets="@../css/Styles.css" text="(*No puede contener espacios*)">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
                               </Label>
-                              <PasswordField fx:id="pass1" promptText="Entre 8-20 carácteres">
+                              <Pane>
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
-                              </PasswordField>
+                                 <children>
+                                    <PasswordField fx:id="pass1" onKeyTyped="#passwordFieldKeyTyped" prefHeight="25.0" prefWidth="291.0" promptText="Entre 8-20 carácteres" />
+                                    <Label fx:id="shownPassword" layoutX="5.0" layoutY="3.0" prefHeight="24.0" prefWidth="284.0" text="Label" />
+                                    <ToggleButton fx:id="toggleButton" layoutX="297.0" mnemonicParsing="false" onAction="#toggleButton" prefHeight="25.0" prefWidth="38.0" text="Ver" />
+                                 </children>
+                              </Pane>
                               <Label id="texto" prefHeight="15.0" prefWidth="400.0" stylesheets="@../css/Styles.css" text="(*Debe tener un dígito, una minúscula, mayúscula y un caracter especial*)">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
                               </Label>
-                              <PasswordField fx:id="pass2">
+                              <Pane>
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
-                              </PasswordField>
-                              <TextField fx:id="mail">
+                                 <children>
+                                    <PasswordField fx:id="pass2" onKeyTyped="#passwordFieldKeyTyped" prefHeight="25.0" prefWidth="291.0" />
+                                 </children>
+                              </Pane>
+                              <Pane>
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
-                              </TextField>
+                                 <children>
+                                    <TextField fx:id="mail" prefHeight="25.0" prefWidth="291.0" />
+                                 </children>
+                              </Pane>
                               <Text fx:id="error" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
                               <HBox alignment="CENTER_LEFT" prefHeight="5.0" prefWidth="74.0">
                                  <children>

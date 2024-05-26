@@ -25,10 +25,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -68,12 +71,17 @@ public class RegistroController implements Initializable {
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
     public Acount cuentas;
     private Image userImagen=null;
+    @FXML
+    private ToggleButton toggleButton;
+    @FXML
+    private Label shownPassword;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Carga Acount
         try {
             cuentas = Acount.getInstance();
+            shownPassword.setVisible(false);
             
         } catch (AcountDAOException | IOException ex) {
             Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
@@ -223,4 +231,29 @@ public class RegistroController implements Initializable {
     private void salir(ActionEvent event) {
         System.exit(0);
     }
+
+    @FXML
+    private void passwordFieldKeyTyped(KeyEvent event) {
+        shownPassword.textProperty().bind(Bindings.concat(pass1.getText()));
+        
+    }
+
+    @FXML
+    private void toggleButton(ActionEvent event) {
+        if(toggleButton.isSelected()){
+            shownPassword.setVisible(true);
+            shownPassword.textProperty().bind(Bindings.concat(pass1.getText()));
+        
+            toggleButton.setText("Ocultar");
+            pass1.setVisible(false);
+        
+        }else{
+            toggleButton.setText("Ver");
+            pass1.setVisible(true);
+         
+            shownPassword.setVisible(false);
+          
+        }
+    }
+    
 }
